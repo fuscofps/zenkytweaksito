@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:radial-gradient(1100px 760px at 74% -10%,#0c1636 0%,#06090f 54%,#03040a 100%) fixed,#04060e;color:#fff;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:#3f7dff;color:#fff;}
+  a{color:#8fb4ff;}
+  h1{text-shadow:0 3px 0 rgba(4,10,30,.6),0 8px 26px rgba(0,0,0,.55);}
+  .zk-link{transition:color .2s;}
+  .zk-link:hover{color:#bcd2ff;}
+</style>
+</helmet>
+
+<div style="min-height:100vh;position:relative;overflow:hidden;">
+<canvas ref="{{ bgRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+
+<header style="position:sticky;top:0;z-index:60;backdrop-filter:blur(16px);background:rgba(4,6,14,0.72);border-bottom:1px solid #131c30;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:15px 24px;gap:24px;">
+    <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;">
+      <img src="assets/logo.webp" alt="Zenky Tweaks" style="height:32px;width:auto;display:block;filter:drop-shadow(0 0 12px rgba(79,125,255,.4));">
+      <span style="font-family:Anton,sans-serif;font-size:19px;letter-spacing:0.04em;text-transform:uppercase;">Zenky Tweaks</span>
+    </a>
+    <a href="index.html" class="zk-link" style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8fb4ff;text-decoration:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 6 5 12l6 6"/></svg>Back to site
+    </a>
+  </div>
+</header>
+
+<div style="max-width:900px;margin:0 auto;padding:80px 24px 40px;position:relative;">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f86c0;margin:0 0 18px;">The fine print</p>
+  <h1 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(46px,8vw,88px);line-height:0.9;text-transform:uppercase;color:#fff;margin:0 0 20px;">Legal &amp;<br><span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">Privacy.</span></h1>
+  <p style="color:#9aa4bd;font-size:16px;line-height:1.65;max-width:600px;margin:0 0 14px;">The terms that govern using ZENKYTWEAKS, and how we handle the little data we collect. Written in plain language, so read it before you book.</p>
+  <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#54648a;margin:0;">Last updated · July 1, 2026</p>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:0 24px 40px;position:relative;display:flex;flex-wrap:wrap;gap:10px;">
+  <sc-for list="{{ toc }}" as="t" hint-placeholder-count="8">
+    <a href="{{ t.href }}" class="zk-link" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#8fb4ff;border:1px solid #24406e;background:rgba(47,107,255,.06);padding:8px 13px;border-radius:999px;text-decoration:none;">{{ t.label }}</a>
+  </sc-for>
+</div>
+
+<main style="max-width:900px;margin:0 auto;padding:20px 24px 60px;position:relative;display:flex;flex-direction:column;gap:20px;">
+  <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="9">
+    <section id="{{ sec.id }}" style="border:1px solid #16213c;border-radius:16px;background:linear-gradient(180deg,#0a1024,#05070f);padding:34px 34px;scroll-margin-top:90px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <span style="font-family:Anton,sans-serif;font-size:26px;color:#2b3d66;line-height:0.8;">{{ sec.num }}</span>
+        <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(22px,3.2vw,30px);line-height:1;text-transform:uppercase;color:#fff;margin:0;letter-spacing:0.01em;">{{ sec.title }}</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <sc-for list="{{ sec.paras }}" as="p" hint-placeholder-count="2">
+          <p style="color:#a6afc6;font-size:15px;line-height:1.7;margin:0;max-width:720px;">{{ p }}</p>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+
+  <section style="border:1px solid #24406e;border-radius:16px;background:linear-gradient(180deg,rgba(47,107,255,.14),rgba(47,107,255,.03));padding:32px 34px;">
+    <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:24px;text-transform:uppercase;color:#fff;margin:0 0 12px;">Questions?</h2>
+    <p style="color:#a6afc6;font-size:15px;line-height:1.7;margin:0 0 20px;max-width:640px;">Anything about these terms, your data, or a refund? Reach us in the Discord or by email and we'll get back within a business day.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="#" class="zk-link" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#3f7dff,#2b5fe0);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:13px 20px;border-radius:7px;text-decoration:none;box-shadow:0 12px 30px -12px rgba(47,107,255,.7);">Join the Discord</a>
+      <a href="Zenky Tweaks.dc.html" class="zk-link" style="display:inline-flex;align-items:center;gap:8px;border:1px solid #2c4675;color:#dfe8ff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:13px 20px;border-radius:7px;text-decoration:none;">Back to site</a>
+    </div>
+  </section>
+</main>
+
+<footer style="border-top:1px solid #131c30;background:#05070f;position:relative;">
+  <div style="max-width:900px;margin:0 auto;padding:26px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#54648a;">© 2026 ZENKYTWEAKS · Performance Tuning.</span>
+    <a href="Zenky Tweaks.dc.html" class="zk-link" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8fb4ff;text-decoration:none;">zenkytweaks.net ↗</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  bgRef = React.createRef();
+
+  componentDidMount() {
+    requestAnimationFrame(() => this._initBg());
+  }
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  _initBg() {
+    const cv = this.bgRef.current; if (!cv) return;
+    const ctx = cv.getContext('2d'); let w = 0, h = 0; const dpr = Math.min(2, window.devicePixelRatio || 1);
+    let pts = [];
+    const build = () => { const n = Math.min(80, Math.floor(window.innerWidth / 18)); pts = []; for (let i = 0; i < n; i++) pts.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * 0.14, vy: (Math.random() - .5) * 0.14, r: Math.random() * 1.3 + 0.6 }); };
+    const resize = () => { w = cv.clientWidth; h = cv.clientHeight; cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); build(); };
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (const p of pts) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > w) p.vx *= -1; if (p.y < 0 || p.y > h) p.vy *= -1; }
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) { const a = pts[i], b = pts[j]; const dx = a.x - b.x, dy = a.y - b.y; const d2 = dx * dx + dy * dy; if (d2 < 19000) { const al = (1 - d2 / 19000) * 0.24; ctx.strokeStyle = 'rgba(90,139,255,' + al + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } }
+      for (const p of pts) { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fillStyle = 'rgba(150,180,255,0.65)'; ctx.fill(); }
+      this._raf = requestAnimationFrame(draw);
+    };
+    resize(); this._onResize = resize; window.addEventListener('resize', resize); draw();
+  }
+
+  renderVals() {
+    const defs = [
+      { id: 'service', title: 'The service', paras: [
+        'ZENKYTWEAKS provides manual, hands on PC optimization delivered live in a 1 on 1 remote session. An operator connects to your computer with your permission and tunes BIOS, Windows, CPU, GPU and memory around your specific hardware. Nothing is a one-click script or automated "booster".',
+        'Every change is made while you watch. You can ask us to skip or undo any tweak at any point during the session.'
+      ] },
+      { id: 'eligibility', title: 'Eligibility & booking', paras: [
+        'You must be at least 18 years old, or have the consent of a parent or guardian, to book a session. You are responsible for ensuring you have the legal right to modify the computer being optimized.',
+        'Sessions are scheduled after payment. We confirm your slot and send a preparation checklist by email. If you need to reschedule, contact us before your slot and we will move it where possible.'
+      ] },
+      { id: 'backups', title: 'Backups & your data', paras: [
+        'The full optimization package includes a fresh Windows installation, which erases the target drive. You are solely responsible for backing up any files, licenses, saves and personal data before the session begins.',
+        'We are not liable for loss of data that was not backed up prior to your appointment. If you want to keep your current environment intact, add the Dual Boot option for a separate, optimized install.'
+      ] },
+      { id: 'overclock', title: 'Overclocking & stability', paras: [
+        'Overclocking and firmware tuning carry inherent risk. Before applying any aggressive change we validate against your thermals and silicon and run stability testing during the session.',
+        'Hardware behaviour varies unit to unit. While we tune conservatively and test before finishing, ZENKYTWEAKS cannot guarantee specific performance numbers, and is not responsible for hardware faults, degradation or failures that arise from factors outside our tuning, including pre-existing defects or unstable components.'
+      ] },
+      { id: 'estimates', title: 'FPS estimates', paras: [
+        'The FPS estimator on our site is an approximate, illustrative model based on typical results. Actual frame rates depend on your full system, drivers, game version, settings and scene. Estimates are not a promise of a specific result.'
+      ] },
+      { id: 'payments', title: 'Payments & refunds', paras: [
+        'Payments are processed securely by Stripe. We never see or store your full card details. Prices are shown in EUR, and your bank may apply conversion for other currencies.',
+        'Because the service is delivered live and is labour-based, refunds are handled case by case. If we are unable to deliver the session, or a technical problem on our side prevents completion, we will refund or reschedule. Discounts (such as the 5% rig-configurator discount) apply only at checkout and cannot be combined or claimed retroactively.'
+      ] },
+      { id: 'conduct', title: 'Acceptable use', paras: [
+        'You agree not to use the service for any unlawful purpose, and not to ask us to modify systems you do not own or control. We may decline or stop a session if we believe hardware is unsafe, unstable, or being used in violation of these terms.'
+      ] },
+      { id: 'privacy', title: 'Privacy policy', paras: [
+        'We collect only what we need to deliver your session: your name or gamertag, email address, and the payment confirmation returned by Stripe. Card data is entered directly into Stripe and is never transmitted to or stored by us.',
+        'During a remote session the operator may see system information necessary for tuning. We do not copy, retain or share your personal files. We do not sell your data. Session-scheduling and support communication happen over email and our Discord.'
+      ] },
+      { id: 'retention', title: 'Data retention & rights', paras: [
+        'We keep booking and contact records only as long as needed for support, accounting and legal obligations, then delete them. You can request a copy of the data we hold about you, or ask us to delete it, by contacting us. We action reasonable requests promptly.',
+        'This site uses minimal local browser storage to remember interface state (such as whether you have already seen a popup). It does not track you across other sites.'
+      ] }
+    ];
+    const sections = defs.map((d, i) => ({ id: d.id, num: String(i + 1).padStart(2, '0'), title: d.title, paras: d.paras }));
+    const toc = defs.map((d) => ({ href: '#' + d.id, label: d.title }));
+    return { bgRef: this.bgRef, sections, toc };
+  }
+}
+</script>
+</body>
+</html>

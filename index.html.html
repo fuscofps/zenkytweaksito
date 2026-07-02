@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>ZENKYTWEAKS · Hand Tuned PC Optimization for Competitive Players</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050912'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='12.5' fill='none' stroke='%232f6bff' stroke-width='3'/%3E%3Cpath d='M20 20h24l-24 24h24' fill='none' stroke='%233f7dff' stroke-width='6' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E">
+<meta name="description" content="Hand tuned PC optimization delivered live, 1 on 1. Deep BIOS, Windows, CPU, GPU and RAM work that cuts input delay and lifts FPS. No scripts, real benchmarks, results before the call ends.">
+<meta property="og:title" content="ZENKYTWEAKS · Hand Tuned PC Optimization">
+<meta property="og:description" content="Live 1 on 1 tuning for competitive players. Lower input delay, higher FPS, real receipts.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://www.youtube.com/iframe_api"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#040404;color:#fff;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:#fff;color:#000;}
+  a{color:inherit;}
+  input{font-family:inherit;}
+  html{scroll-behavior:smooth;}
+  ::selection{background:#2f6bff;color:#fff;}
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:#050505;}
+  ::-webkit-scrollbar-thumb{background:#1c2848;border-radius:5px;border:2px solid #050505;}
+  ::-webkit-scrollbar-thumb:hover{background:#2f6bff;}
+  @keyframes zk-blink{0%,100%{opacity:1}50%{opacity:0.2}}
+  @keyframes zk-float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
+  @keyframes zk-float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,40px) scale(1.18)}}
+  @keyframes zk-eq{0%{transform:scaleY(.18)}100%{transform:scaleY(1)}}
+  @keyframes zk-pop{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:none}}
+  @keyframes zk-fade{0%{opacity:0}100%{opacity:1}}
+  @keyframes zk-rise{0%{opacity:0;transform:translateY(24px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes zk-sweep{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+  @keyframes zk-spin{to{transform:rotate(360deg)}}
+  @keyframes zk-slidex{0%{opacity:0;transform:translateX(-46px)}100%{opacity:1;transform:none}}
+  @keyframes zk-slidexr{0%{opacity:0;transform:translateX(46px)}100%{opacity:1;transform:none}}
+  @keyframes zk-pop2{0%{opacity:0;transform:translateY(22px) scale(.96)}100%{opacity:1;transform:none}}
+  @keyframes zk-par{0%{transform:translateY(54px)}100%{transform:translateY(-54px)}}
+  @keyframes zk-grow{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+  @keyframes zk-glow{0%,100%{opacity:.4}50%{opacity:1}}
+  @keyframes zk-rise2{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+  .zk-nav a{position:relative;transition:color .2s;}
+  .zk-nav a:hover{color:#fff;}
+  .zk-btn{position:relative;overflow:hidden;transition:transform .18s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .2s,border-color .2s,color .2s;}
+  .zk-btn::after{content:'';position:absolute;top:0;left:-70%;width:42%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-20deg);transition:left .6s cubic-bezier(.3,.6,.3,1);pointer-events:none;}
+  .zk-btn:hover::after{left:130%;}
+  .zk-btn:hover{transform:translateY(-2px);box-shadow:0 0 34px -6px rgba(255,255,255,0.3);}
+  .zk-btnw:hover{box-shadow:0 0 0 1px #fff,0 14px 40px -12px rgba(255,255,255,.5);}
+  .zk-btno:hover{border-color:#fff;background:rgba(255,255,255,.04);box-shadow:0 0 34px -6px rgba(255,255,255,0.22);}
+  .zk-card{transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s,background .3s,box-shadow .3s;}
+  .zk-card:hover{transform:translateY(-4px);border-color:#3a3a3a;box-shadow:0 0 44px -6px rgba(255,255,255,0.16),0 22px 54px -26px rgba(0,0,0,0.85);}
+  .zk-card.zk-glow{border-color:#2f6bff !important;box-shadow:0 0 0 1px rgba(47,107,255,.65),0 0 32px -4px rgba(47,107,255,.6),0 0 70px -12px rgba(47,107,255,.45) !important;}
+  .zk-revcard{border:1px solid #2f6bff !important;box-shadow:0 0 0 1px rgba(47,107,255,.32),0 0 24px -7px rgba(47,107,255,.45);}
+  .zk-revcard img{-webkit-user-drag:none;user-drag:none;pointer-events:auto;}
+  .zk-att{cursor:zoom-in;}
+  .zk-att img{transition:transform .45s cubic-bezier(.2,.7,.2,1);}
+  .zk-att:hover img{transform:scale(1.07);}
+  .zk-tab{transition:color .2s,background .25s,border-color .25s,box-shadow .3s,transform .25s;}
+  .zk-tab:hover{transform:translateY(-1px);}
+  .zk-vid{transition:transform .4s cubic-bezier(.2,.7,.2,1);overflow:hidden;}
+  .zk-vid:hover{transform:scale(1.012);}
+  .zk-vid:hover .zk-play{transform:scale(1.12);background:rgba(255,255,255,.14);}
+  .zk-play{transition:transform .3s,background .3s;}
+  .zk-att{transition:border-color .25s;}
+  .zk-att:hover{border-color:#444;}
+  .zk-input::placeholder{color:#5a5a5a;}
+  .zk-input:focus{outline:none;border-color:#fff;}
+  .StripeElement{min-height:42px;}
+  .zk-progress{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#3f7dff,#8fb4ff,#fff);transform-origin:0 50%;transform:scaleX(0);z-index:80;box-shadow:0 0 12px rgba(63,125,255,.55);}
+  @supports (animation-timeline: scroll()){ .zk-progress{animation:zk-grow linear both;animation-timeline:scroll(root);} }
+  @supports (animation-timeline: view()){
+    .zk-rev{opacity:0;animation:zk-rise2 linear both;animation-timeline:view();animation-range:entry 2% cover 32%;}
+    .zk-rev-s{opacity:0;animation:zk-pop2 linear both;animation-timeline:view();animation-range:entry 0% cover 30%;}
+    .zk-rev-l{opacity:0;animation:zk-slidex linear both;animation-timeline:view();animation-range:entry 2% cover 32%;}
+    .zk-rev-r{opacity:0;animation:zk-slidexr linear both;animation-timeline:view();animation-range:entry 2% cover 32%;}
+    .zk-par{animation:zk-par linear both;animation-timeline:view();animation-range:cover;}
+  }
+  .zk-nav a::after{content:'';position:absolute;left:0;bottom:-7px;height:2px;width:0;background:linear-gradient(90deg,#4f7dff,#8fb4ff);transition:width .28s cubic-bezier(.2,.7,.2,1);}
+  .zk-nav a:hover::after{width:100%;}
+  .zk-iconbox{transition:background .3s,color .3s,transform .35s cubic-bezier(.2,.7,.2,1);}
+  .zk-iconbox svg{transition:stroke .3s;}
+  .zk-card:hover .zk-iconbox{background:#fff;transform:rotate(-8deg) scale(1.06);}
+  .zk-card:hover .zk-iconbox svg{stroke:#000;}
+  .zk-stat{position:relative;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+  .zk-stat:hover{transform:translateY(-5px);}
+  .zk-stat::after{content:'';position:absolute;left:0;bottom:-8px;height:2px;width:0;background:linear-gradient(90deg,#fff,transparent);transition:width .35s cubic-bezier(.2,.7,.2,1);}
+  .zk-stat:hover::after{width:64px;}
+  .zk-logo{height:34px;width:auto;display:block;filter:drop-shadow(0 0 12px rgba(255,255,255,.28));transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .3s;}
+  a:hover>.zk-logo{transform:rotate(-7deg) scale(1.09);filter:drop-shadow(0 0 20px rgba(255,255,255,.55));}
+  .zk-cmp{cursor:ew-resize;touch-action:none;}
+  .zk-faqitem{transition:border-color .3s,background .3s;}
+  .zk-faqitem:hover{border-color:#3a3a3a;background:#0c0c0c;}
+  .zk-sw{transition:background .3s,border-color .3s,box-shadow .3s;}
+  .zk-knob{transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s;}
+  .zk-link{transition:color .2s;}
+  .zk-link:hover{color:#dbe6ff;}
+  .zk-appbar{position:sticky;top:0;z-index:60;padding:14px 16px 0;background:transparent;transition:padding .4s cubic-bezier(.2,.7,.2,1);}
+  .zk-glassbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:24px;padding:0 20px;height:54px;border-radius:16px;background:rgba(13,18,32,0.5);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 12px 40px -20px rgba(0,0,0,0.85);transition:background .4s,border-color .4s,box-shadow .4s,height .4s;}
+  .zk-appbar.is-scrolled{padding-top:9px;}
+  .zk-appbar.is-scrolled .zk-glassbar{height:50px;background:rgba(9,13,24,0.72);border-color:rgba(120,150,255,0.2);box-shadow:0 1px 0 rgba(255,255,255,0.09) inset,0 18px 50px -22px rgba(0,0,0,0.92),0 0 0 1px rgba(47,107,255,0.07);}
+  .zk-applink{position:relative;color:#c2c9d8;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;transition:color .2s;}
+  .zk-applink:hover{color:#fff;}
+  h1{text-shadow:0 3px 0 rgba(4,10,30,.6),0 8px 26px rgba(0,0,0,.55);}
+  h2{text-shadow:0 2px 0 rgba(4,10,30,.5),0 7px 22px rgba(0,0,0,.5);}
+  .zk-3d{text-shadow:0 3px 0 rgba(4,10,30,.6),0 8px 26px rgba(47,107,255,.4);}
+  .zk-sel{appearance:none;-webkit-appearance:none;background-color:rgba(5,9,20,.85);border:1px solid #26406e;color:#dfe8ff;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.03em;padding:8px 26px 8px 10px;border-radius:8px;cursor:pointer;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237ea3ff' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:border-color .2s,box-shadow .2s;max-width:100%;}
+  .zk-sel:hover,.zk-sel:focus{border-color:#4f7dff;box-shadow:0 0 0 1px rgba(79,125,255,.55),0 0 26px rgba(47,107,255,.5),0 0 60px -8px rgba(47,107,255,.4);}
+  .zk-sel option{background:#05070f;color:#dfe8ff;}
+  .hero-yt{overflow:hidden;}
+  .hero-yt iframe{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.34);border:0;pointer-events:none;}
+  /* ================= MOBILE ================= */
+  footer, footer *{font-weight:700 !important;text-transform:uppercase !important;}
+  @media (max-width:820px){
+    .zk-glassbar{gap:10px !important;padding:0 12px !important;}
+    .zk-appbar{padding-left:10px !important;padding-right:10px !important;}
+    .zk-mnav{gap:16px !important;justify-content:flex-start !important;overflow-x:auto !important;flex:1 1 auto !important;scrollbar-width:none !important;}
+    .zk-mnav a{font-size:10px !important;white-space:nowrap;}
+    section[style]{padding-left:16px !important;padding-right:16px !important;padding-top:76px !important;padding-bottom:60px !important;}
+    footer > div{padding-left:16px !important;padding-right:16px !important;}
+    .zk-mcol{grid-template-columns:1fr !important;gap:20px !important;}
+    .zk-mwrap{flex-wrap:wrap !important;gap:22px 30px !important;}
+    #zk-tweetgrid{grid-template-columns:1fr !important;zoom:1 !important;}
+  }
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#05070f">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#05070f"/>
+    <text x="600" y="360" font-family="Arial Black, sans-serif" font-weight="900" font-size="150" fill="#ffffff" text-anchor="middle">ZK</text>
+    <text x="600" y="470" font-family="monospace" font-size="34" letter-spacing="14" fill="#5b8bff" text-anchor="middle">TWEAKS</text>
+  </svg>
+</template>
+</helmet>
+
+<div ref="{{ rootRef }}" style="background:transparent;min-height:100vh;width:100%;overflow-x:clip;position:relative;">
+<canvas ref="{{ bgRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+<div class="zk-progress"></div>
+
+<!-- ============ HEADER ============ -->
+<header ref="{{ headerRef }}" class="zk-appbar">
+  <div class="zk-glassbar">
+    <a href="#top" style="display:flex;align-items:center;gap:9px;text-decoration:none;flex:0 0 auto;">
+      <img src="assets/logo.webp" alt="Zenky Tweaks" style="height:24px;width:auto;display:block;filter:drop-shadow(0 0 10px rgba(79,125,255,.5));">
+      <span style="font-family:Anton,sans-serif;font-size:16px;letter-spacing:0.03em;text-transform:uppercase;color:#fff;">Zenky Tweaks</span>
+    </a>
+    <nav class="zk-mnav" style="flex:1;display:flex;align-items:center;justify-content:center;gap:34px;">
+      <a href="#results" class="zk-applink">RESULTS</a>
+      <a href="#reviews" class="zk-applink">REVIEWS</a>
+      <a href="#process" class="zk-applink">PROCESS</a>
+      <a href="#pricing" class="zk-applink">PRICING</a>
+      <a href="#guides" class="zk-applink">TWEETS</a>
+    </nav>
+    <button onClick="{{ goPricing }}" class="zk-btn" style="flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:linear-gradient(180deg,#3f7dff,#2b5fe0);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:9px 17px;border:none;border-radius:980px;cursor:pointer;box-shadow:0 8px 22px -10px rgba(47,107,255,.8);">Get Optimized</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" data-hero style="position:relative;padding:104px 24px 90px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div style="position:absolute;width:860px;height:860px;border-radius:50%;top:-300px;right:-200px;background:radial-gradient(circle,rgba(47,107,255,0.22),rgba(47,107,255,0) 60%);filter:blur(18px);animation:zk-float 16s ease-in-out infinite;pointer-events:none;"></div>
+  <div style="position:absolute;width:520px;height:520px;border-radius:50%;bottom:-220px;left:-140px;background:radial-gradient(circle,rgba(56,110,220,0.11),rgba(56,110,220,0) 62%);filter:blur(20px);animation:zk-float2 20s ease-in-out infinite;pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,122,230,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(74,122,230,0.16) 1px,transparent 1px);background-size:58px 58px;opacity:0.72;pointer-events:none;mask-image:radial-gradient(1150px 720px at 74% 14%,#000,transparent 82%);-webkit-mask-image:radial-gradient(1150px 720px at 74% 14%,#000,transparent 82%);"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:260px;background:linear-gradient(180deg,rgba(47,107,255,0.16),rgba(47,107,255,0.05) 45%,transparent);pointer-events:none;"></div>
+
+  <div class="zk-mcol" style="max-width:1280px;margin:0 auto;position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:56px;align-items:center;">
+    <div>
+      <div class="zk-rev" data-reveal style="display:inline-flex;align-items:center;gap:10px;border:1px solid #222;border-radius:999px;padding:7px 14px;margin-bottom:26px;background:rgba(255,255,255,0.02);">
+        <span style="width:7px;height:7px;background:#fff;border-radius:50%;animation:zk-blink 1.6s infinite;"></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#cfcfcf;">Hands on tuning · zero snake oil</span>
+      </div>
+      <h1 data-reveal data-delay="80" style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(50px,7.6vw,110px);line-height:0.88;letter-spacing:0.004em;text-transform:uppercase;color:#fff;margin:0 0 24px;">Frames win<br><span style="background:linear-gradient(120deg,#eef4ff 8%,#5b8bff 50%,#a9c2ff 92%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">fights.</span></h1>
+      <p data-reveal data-delay="150" style="color:#9a9a9a;font-size:17.5px;line-height:1.65;max-width:520px;margin:0 0 34px;">Your aim isn't the problem. Your PC is what's holding it back. We hand tune every layer, <strong style="color:#e8eeff;font-weight:800;text-transform:uppercase;letter-spacing:0.01em;">from BIOS-level tuning down to your in-game settings</strong>, so the milliseconds you keep losing finally land on your side.</p>
+      <div data-reveal data-delay="220" style="display:flex;flex-wrap:wrap;gap:14px;">
+        <button onClick="{{ goPricing }}" class="zk-btn zk-btnw" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:#000;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px 28px;border:none;border-radius:4px;cursor:pointer;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12z"/></svg>Get Optimized</button>
+        <a href="#results" class="zk-btn zk-btno" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;border:1px solid #2c2c2c;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:16px 28px;border-radius:4px;text-decoration:none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-5 3 3 5-7"/></svg>See the numbers</a>
+      </div>
+      <div data-reveal data-delay="300" class="zk-mwrap" style="display:flex;gap:36px;margin-top:48px;border-top:1px solid #181818;padding-top:26px;">
+        <div class="zk-stat"><div style="font-family:Anton,sans-serif;font-size:36px;line-height:1;background:linear-gradient(120deg,#eef4ff,#6f97ff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">+{{ heroFps }}%</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#777;margin-top:8px;">Avg FPS gain</div><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#5f6b86;margin-top:5px;max-width:180px;line-height:1.5;">Run the free checkup with your own parts to see your estimate</div></div>
+        <div class="zk-stat"><div style="font-family:Anton,sans-serif;font-size:36px;line-height:1;color:#fff;">~3 hr</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#777;margin-top:8px;">Live 1-on-1</div></div>
+        <div class="zk-stat"><div style="font-family:Anton,sans-serif;font-size:36px;line-height:1;color:#fff;">1,700+</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#777;margin-top:8px;">Happy customers</div></div>
+      </div>
+    </div>
+
+    <!-- Before/after gameplay carousel -->
+    <div data-reveal data-delay="180" style="position:relative;">
+      <div style="position:relative;">
+        <div style="position:relative;aspect-ratio:16/9;overflow:visible;">
+          <sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="3">
+            <div onClick="{{ s.click }}" style="position:absolute;top:0;left:9%;width:82%;height:100%;opacity:{{ s.op }};transform:translateX({{ s.x }}) scale({{ s.sc }});filter:brightness({{ s.br }});z-index:{{ s.z }};transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s,filter .55s;cursor:{{ s.cur }};border:1px solid #1b2a4d;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.9);">
+              {{ s.posterEl }}
+              <div class="hero-yt" data-vid="{{ s.vid }}" style="position:absolute;inset:0;pointer-events:none;"></div>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,7,15,.1) 38%,rgba(4,7,15,.92));pointer-events:none;"></div>
+              <span style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#fff;border:1px solid {{ s.accent }};background:rgba(4,7,15,.55);padding:5px 11px 5px 8px;border-radius:6px;box-shadow:0 0 16px -2px {{ s.accent }};">{{ s.logoEl }}{{ s.game }}</span>
+              <div style="position:absolute;left:18px;bottom:46px;pointer-events:none;">
+                <div style="font-family:Anton,sans-serif;font-size:clamp(44px,7vw,64px);line-height:0.8;color:#fff;text-shadow:0 3px 0 rgba(4,10,30,.6),0 8px 26px rgba(47,107,255,.45);">{{ s.fps }}<span style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;margin-left:8px;color:#cdd8f2;">FPS</span></div>
+              </div>
+              <div style="position:absolute;left:18px;right:18px;bottom:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.01em;color:#9fb0d6;">{{ s.stock }} FPS stock → <span style="color:#fff;font-weight:700;">{{ s.fps }} tuned</span> · {{ s.spec }}</div>
+            </div>
+          </sc-for>
+          <button onClick="{{ heroPrev }}" aria-label="Previous" class="zk-btn" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(4,7,15,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button onClick="{{ heroNext }}" aria-label="Next" class="zk-btn" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(4,7,15,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 4px 0;position:relative;z-index:4;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="3">
+              <button onClick="{{ s.go }}" aria-label="Go to slide" style="width:{{ s.dotW }};height:7px;border-radius:999px;border:none;padding:0;cursor:pointer;background:{{ s.dotBg }};transition:width .3s,background .3s;"></button>
+            </sc-for>
+          </div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#c3cfe8;">Before → after · live capture</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section id="results" style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div style="position:absolute;width:760px;height:760px;border-radius:50%;top:-200px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,255,255,0.05),rgba(255,255,255,0) 60%);pointer-events:none;"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;">
+    <div class="zk-rev" data-reveal style="text-align:center;max-width:720px;margin:0 auto 56px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f6f6f;margin:0 0 18px;">No edits · no cope</p>
+      <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,76px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0 0 18px;">Receipts, not <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">promises.</span></h2>
+      <p style="color:#9a9a9a;font-size:16.5px;line-height:1.6;margin:0;">Same rig, same scene. One run stock, one run optimized. Pick a game, then grab the slider and see the gap with your own eyes.</p>
+    </div>
+
+    <!-- interactive comparison -->
+    <div data-chart style="border:1px solid #1c1c1c;border-radius:14px;background:linear-gradient(180deg,#0b0b0b,#070707);overflow:hidden;">
+      <!-- tabs -->
+      <div style="display:flex;gap:8px;padding:18px;border-bottom:1px solid #181818;flex-wrap:wrap;">
+        <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="3">
+          <button onClick="{{ tb.onClick }}" class="zk-tab" style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding:11px 18px;border-radius:6px;cursor:pointer;border:1px solid {{ tb.border }};background:{{ tb.bg }};color:{{ tb.color }};box-shadow:{{ tb.glow }};">
+{{ tb.logoEl }}{{ tb.name }}
+          </button>
+        </sc-for>
+      </div>
+
+      <div class="zk-mcol" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;">
+        <!-- video -->
+        <div style="position:relative;border-right:1px solid #181818;padding:26px;display:flex;flex-direction:column;">
+          <div class="zk-vid" style="position:relative;aspect-ratio:16/10;border-radius:10px;border:1px solid #1f1f1f;background:repeating-linear-gradient(45deg,#0c0c0c,#0c0c0c 12px,#111 12px,#111 24px);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <div style="position:absolute;top:14px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#9a9a9a;border:1px solid #2a2a2a;padding:5px 10px;border-radius:4px;background:rgba(0,0,0,0.55);">Video · {{ g.name }} benchmark</div>
+            <div class="zk-play" style="width:64px;height:64px;border:1.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);">
+              <div style="width:0;height:0;border-left:17px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px;"></div>
+            </div>
+            <div style="position:absolute;bottom:14px;left:14px;right:14px;display:flex;align-items:flex-end;justify-content:space-between;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9a9a9a;background:rgba(0,0,0,.5);padding:4px 8px;border-radius:4px;">{{ g.sub }}</span>
+              <span style="font-family:Anton,sans-serif;font-size:40px;line-height:0.8;color:#fff;">{{ g.fps1 }}<span style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-left:6px;vertical-align:super;">FPS</span></span>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:18px;">
+            <div style="flex:1;border:1px solid #1c1c1c;border-radius:8px;padding:14px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#777;margin-bottom:8px;">FPS gain</div>
+              <div style="font-family:Anton,sans-serif;font-size:30px;line-height:0.9;background:linear-gradient(120deg,#eef4ff,#6f97ff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">{{ g.fpsDelta }}</div>
+            </div>
+            <div style="flex:1;border:1px solid #1c1c1c;border-radius:8px;padding:14px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#777;margin-bottom:8px;">Input delay</div>
+              <div style="font-family:Anton,sans-serif;font-size:30px;line-height:0.9;background:linear-gradient(120deg,#eef4ff,#6f97ff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">{{ g.latDelta }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- charts -->
+        <div style="padding:30px;display:flex;flex-direction:column;gap:30px;justify-content:center;">
+          <div>
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9a9a9a" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-5 3 3 5-7"/></svg>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9a9a9a;">Frames per second · higher is better</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#fff;margin-bottom:6px;"><span style="font-weight:700;">OPTIMIZED</span><span>{{ g.fps1 }} FPS</span></div>
+                <div style="height:14px;background:#141414;border-radius:7px;overflow:hidden;"><div style="position:relative;height:100%;width:{{ g.fps1w }};background:linear-gradient(90deg,#bdbdbd,#fff);border-radius:7px;transition:width .85s cubic-bezier(.2,.7,.2,1);"><span style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:zk-sweep 2.6s ease-in-out infinite;"></span></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#888;margin-bottom:6px;"><span>STOCK</span><span>{{ g.fps0 }} FPS</span></div>
+                <div style="height:14px;background:#141414;border-radius:7px;overflow:hidden;"><div style="height:100%;width:{{ g.fps0w }};background:linear-gradient(90deg,#3a3a3a,#5a5a5a);border-radius:7px;transition:width .85s cubic-bezier(.2,.7,.2,1);"></div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9a9a9a" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9a9a9a;">Input delay (ms) · lower is better</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#fff;margin-bottom:6px;"><span style="font-weight:700;">OPTIMIZED</span><span>{{ g.lat1 }} ms</span></div>
+                <div style="height:14px;background:#141414;border-radius:7px;overflow:hidden;"><div style="position:relative;height:100%;width:{{ g.lat1w }};background:linear-gradient(90deg,#bdbdbd,#fff);border-radius:7px;transition:width .85s cubic-bezier(.2,.7,.2,1);"><span style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:zk-sweep 2.6s ease-in-out infinite;"></span></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#888;margin-bottom:6px;"><span>STOCK</span><span>{{ g.lat0 }} ms</span></div>
+                <div style="height:14px;background:#141414;border-radius:7px;overflow:hidden;"><div style="height:100%;width:{{ g.lat0w }};background:linear-gradient(90deg,#3a3a3a,#5a5a5a);border-radius:7px;transition:width .85s cubic-bezier(.2,.7,.2,1);"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS (Discord) ============ -->
+<section id="reviews" style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;background:#060606;">
+  <div style="position:absolute;width:600px;height:600px;border-radius:50%;bottom:-240px;right:-120px;background:radial-gradient(circle,rgba(255,255,255,0.05),rgba(255,255,255,0) 60%);pointer-events:none;"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;">
+    <div class="zk-rev" data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:46px;">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f6f6f;margin:0 0 18px;">Straight from the Discord</p>
+        <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(36px,5.2vw,72px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0;">The proof's in<br>the <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">ping.</span></h2>
+      </div>
+      <p style="color:#9a9a9a;font-size:16px;line-height:1.6;max-width:420px;margin:0;">Raw screenshots straight out of our Discord. Nothing staged, nothing paid. Just players who stopped blaming their aim.</p>
+    </div>
+
+    <div class="zk-revmask" style="position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);">
+    <div class="zk-revtrack" ref="{{ revTrackRef }}" style="display:flex;gap:18px;width:max-content;padding:8px 0 22px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;">
+      <sc-for list="{{ reviewsLoop }}" as="r" hint-placeholder-count="8">
+        <div class="zk-card zk-revcard" style="flex:0 0 360px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;border-radius:12px;padding:18px;background:linear-gradient(180deg,#0b1122,#080b14);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+            <div style="position:relative;width:42px;height:42px;border-radius:50%;border:1px solid #2a2a2a;overflow:hidden;background:repeating-linear-gradient(45deg,#111,#111 6px,#191919 6px,#191919 12px);display:flex;align-items:center;justify-content:center;font-family:Anton,sans-serif;font-size:17px;color:#bdbdbd;flex:0 0 auto;">
+              {{ r.avatarEl }}</div>
+            <div style="min-width:0;">
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font-weight:700;font-size:14.5px;color:#fff;">{{ r.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#000;background:#bdbdbd;padding:2px 6px;border-radius:3px;">{{ r.role }}</span></div>
+              <div style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#7d8bb5;margin-top:3px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#5865F2" style="flex:0 0 auto;"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4a18.3 18.3 0 0 1 4.3 1.4A16.6 16.6 0 0 0 12 4.2 16.6 16.6 0 0 0 4.5 4.8 18.3 18.3 0 0 1 8.8 3.4L8.6 3a19.8 19.8 0 0 0-4.9 1.4C.7 8.9-.1 13.3.3 17.6a19.9 19.9 0 0 0 6 3l.5-.7a12 12 0 0 1-1.9-.9l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.2.7-1.9.9l.5.7a19.9 19.9 0 0 0 6-3c.5-5-.8-9.4-2.9-13.2ZM8.3 15c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm7.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>Discord vouch</div>
+            </div>
+          </div>
+          <p style="font-size:14.5px;line-height:1.55;color:#dcdcdc;margin:0 0 13px;">{{ r.msg }}</p>
+          <!-- attachment photo slot -->
+          <sc-if value="{{ r.img }}">
+          <div onClick="{{ r.open }}" class="zk-att" style="position:relative;border:1px solid #1b2540;border-radius:8px;overflow:hidden;background:#0a0e18;aspect-ratio:{{ r.ratio }};display:flex;align-items:center;justify-content:center;margin-top:auto;">
+            {{ r.imgEl }}
+          </div>
+          </sc-if>
+          <div style="display:flex;gap:7px;margin-top:12px;">
+            <span style="display:inline-flex;align-items:center;gap:6px;border:1px solid #222;border-radius:999px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#bdbdbd;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12z"/></svg>{{ r.react1 }}</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;border:1px solid #222;border-radius:999px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#bdbdbd;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>{{ r.react2 }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+    <div style="text-align:center;margin-top:46px;">
+      <p style="color:#8a93ad;font-size:15px;margin:0 0 18px;">Real vouches, real rigs. See it for yourself.</p>
+      <a href="https://discord.gg/zenkytweaks" target="_blank" rel="noopener" class="zk-btn" style="display:inline-flex;align-items:center;gap:11px;background:linear-gradient(180deg,#4f8bff,#2f6bff);color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:16px 30px;border-radius:11px;text-decoration:none;box-shadow:0 14px 40px -8px rgba(47,107,255,.95),0 0 22px -4px rgba(79,139,255,.7),inset 0 1px 0 rgba(255,255,255,.25);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4a18.3 18.3 0 0 1 4.3 1.4A16.6 16.6 0 0 0 12 4.2 16.6 16.6 0 0 0 4.5 4.8 18.3 18.3 0 0 1 8.8 3.4L8.6 3a19.8 19.8 0 0 0-4.9 1.4C.7 8.9-.1 13.3.3 17.6a19.9 19.9 0 0 0 6 3l.5-.7a12 12 0 0 1-1.9-.9l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.2.7-1.9.9l.5.7a19.9 19.9 0 0 0 6-3c.5-5-.8-9.4-2.9-13.2ZM8.3 15c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm7.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>
+        Join &amp; see with your own eyes
+      </a>
+    </div>
+  </div>
+</section>
+<section id="simulator" style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div class="zk-par" style="position:absolute;width:700px;height:700px;border-radius:50%;bottom:-260px;left:-160px;background:radial-gradient(circle,rgba(47,107,255,0.12),rgba(47,107,255,0) 60%);pointer-events:none;"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;">
+    <div class="zk-rev" style="text-align:center;max-width:760px;margin:0 auto 50px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f86c0;margin:0 0 18px;">Build your rig · free FPS estimate</p>
+      <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,76px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0 0 18px;">Drop in your parts.<br>See your <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">real frames.</span></h2>
+      <p style="color:#9aa4bd;font-size:16.5px;line-height:1.6;margin:0;">Pick your exact CPU, GPU and memory right on the rig, choose a game and resolution, and we'll estimate the frames a hands on optimization could unlock. Build it here and take <span style="color:#7ea3ff;font-weight:700;">5% off</span>.</p>
+    </div>
+
+    <div class="zk-mcol" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px;align-items:stretch;">
+      <!-- RENDER + selectors -->
+      <div class="zk-rev-l" style="position:relative;border:1px solid #1b2542;border-radius:16px;background:linear-gradient(180deg,#0a1024,#05070f);padding:22px;overflow:hidden;min-height:540px;display:flex;flex-direction:column;">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 34%,rgba(47,107,255,.20),transparent 58%);opacity:{{ rigGlow }};animation:zk-glow 3.4s ease-in-out infinite;pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;position:relative;margin-bottom:14px;gap:10px;flex-wrap:wrap;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9aa4bd;display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:#5b8bff;box-shadow:0 0 10px #5b8bff;animation:zk-blink 1.5s infinite;"></span>Your rig</span>
+          <div style="display:flex;gap:8px;">
+            <select class="zk-sel" value="{{ rig.game }}" onChange="{{ onGame }}"><sc-for list="{{ gameOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select>
+            <select class="zk-sel" value="{{ rig.res }}" onChange="{{ onRes }}"><sc-for list="{{ resOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select>
+          </div>
+        </div>
+        <!-- interior -->
+        <div style="position:relative;flex:1;border:1px solid #16203c;border-radius:12px;background:linear-gradient(180deg,#080d1c,#05070f);overflow:hidden;background-image:linear-gradient(#0d152b 1px,transparent 1px),linear-gradient(90deg,#0d152b 1px,transparent 1px);background-size:34px 34px;">
+          <!-- CPU cooler -->
+          <div style="position:absolute;top:22px;left:22px;width:116px;height:116px;border:1px solid #1c2946;border-radius:12px;background:#0a0f1e;display:flex;align-items:center;justify-content:center;">
+            <div style="position:relative;width:92px;height:92px;border-radius:50%;background:#080d1c;border:1px solid #1e2c4c;display:flex;align-items:center;justify-content:center;">
+              <div style="width:88%;height:88%;border-radius:50%;background:repeating-conic-gradient(#1c2946 0 18deg,#0c1428 18deg 36deg);animation:zk-spin {{ rigSpin }} linear infinite;"></div><div style="position:absolute;width:24%;height:24%;border-radius:50%;background:#24365e;border:1px solid #3f5aa0;"></div>
+            </div>
+            <div style="position:absolute;bottom:6px;left:0;right:0;text-align:center;line-height:1;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:0.18em;color:#5f74aa;margin-bottom:2px;">CPU</div>
+              <div style="font-family:Anton,sans-serif;font-size:16px;letter-spacing:0.01em;color:{{ rig.cpuColor }};text-shadow:0 0 9px {{ rig.cpuColor }},0 0 20px {{ rig.cpuColor }},0 1px 0 rgba(0,0,0,.85);">{{ rig.cpuShort }}</div>
+            </div>
+          </div>
+          <!-- RAM -->
+          <div style="position:absolute;top:22px;left:170px;z-index:4;">
+            <div style="display:flex;gap:7px;">
+              <div style="width:14px;height:104px;border-radius:4px;background:repeating-linear-gradient(180deg,#0a1122 0 3px,#06090f 3px 6px);border:1px dashed #1b2942;opacity:.5;box-shadow:inset 0 0 8px rgba(0,0,0,.6);"></div><div style="position:relative;width:14px;height:104px;border-radius:4px;background:linear-gradient(180deg,#1c2c50,#0d1730);border:1px solid #2f6bff;box-shadow:0 0 12px rgba(79,125,255,.6),inset 0 0 6px rgba(79,125,255,.25);"><span style="position:absolute;left:2px;right:2px;bottom:4px;height:8px;border-radius:1px;background:repeating-linear-gradient(90deg,#c9a24b 0 1.4px,transparent 1.4px 2.8px);opacity:.85;"></span></div><div style="width:14px;height:104px;border-radius:4px;background:repeating-linear-gradient(180deg,#0a1122 0 3px,#06090f 3px 6px);border:1px dashed #1b2942;opacity:.5;box-shadow:inset 0 0 8px rgba(0,0,0,.6);"></div><div style="position:relative;width:14px;height:104px;border-radius:4px;background:linear-gradient(180deg,#1c2c50,#0d1730);border:1px solid #2f6bff;box-shadow:0 0 12px rgba(79,125,255,.6),inset 0 0 6px rgba(79,125,255,.25);"><span style="position:absolute;left:2px;right:2px;bottom:4px;height:8px;border-radius:1px;background:repeating-linear-gradient(90deg,#c9a24b 0 1.4px,transparent 1.4px 2.8px);opacity:.85;"></span></div>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:4px;"><span style="width:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:7px;color:#3f4d70;">1</span><span style="width:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:7px;color:#7ea3ff;">2</span><span style="width:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:7px;color:#3f4d70;">3</span><span style="width:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:7px;color:#7ea3ff;">4</span></div>
+            <span style="display:block;margin-top:7px;text-align:center;font-family:Anton,sans-serif;font-size:13px;letter-spacing:0.01em;white-space:nowrap;color:{{ rig.ramColor }};text-shadow:0 0 9px {{ rig.ramColor }},0 0 18px {{ rig.ramColor }},0 1px 0 rgba(0,0,0,.85);">{{ rig.ramShort }}</span>
+            <span style="display:block;margin-top:2px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:0.14em;color:#5f74aa;">DUAL CHANNEL · SLOTS 2 + 4</span>
+          </div>
+          <!-- GPU -->
+          <div style="position:absolute;left:22px;right:20px;top:158px;height:100px;border:1px solid #1c2946;border-radius:12px;background:linear-gradient(180deg,#0e1730,#0a1020);display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:0 20px;">
+            <div style="position:absolute;left:18px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;z-index:2;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:0.18em;color:#5f74aa;margin-bottom:3px;">GPU</div>
+              <div style="font-family:Anton,sans-serif;font-size:23px;line-height:0.9;letter-spacing:0.01em;color:{{ rig.gpuColor }};text-shadow:0 0 11px {{ rig.gpuColor }},0 0 24px {{ rig.gpuColor }},0 1px 0 rgba(0,0,0,.85);">{{ rig.gpuShort }}</div>
+            </div>
+            <div style="position:relative;width:74px;height:74px;border-radius:50%;background:#080d1c;border:1px solid #1e2c4c;display:flex;align-items:center;justify-content:center;"><div style="width:88%;height:88%;border-radius:50%;background:repeating-conic-gradient(#1c2946 0 18deg,#0c1428 18deg 36deg);animation:zk-spin {{ rigSpin }} linear infinite;"></div><div style="position:absolute;width:24%;height:24%;border-radius:50%;background:#24365e;border:1px solid #3f5aa0;"></div></div>
+            <div style="position:relative;width:74px;height:74px;border-radius:50%;background:#080d1c;border:1px solid #1e2c4c;display:flex;align-items:center;justify-content:center;"><div style="width:88%;height:88%;border-radius:50%;background:repeating-conic-gradient(#1c2946 0 18deg,#0c1428 18deg 36deg);animation:zk-spin {{ rigSpin }} linear infinite;"></div><div style="position:absolute;width:24%;height:24%;border-radius:50%;background:#24365e;border:1px solid #3f5aa0;"></div></div>
+          </div>
+          <!-- FPS badge -->
+          <div style="position:absolute;right:20px;top:22px;width:118px;border:1px solid #22345c;border-radius:10px;background:rgba(6,11,24,.9);padding:11px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:#5f74aa;margin-bottom:3px;">Tuned FPS</div>
+            <div style="font-family:Anton,sans-serif;font-size:34px;line-height:0.8;color:#fff;">{{ rigTuned }}</div>
+          </div>
+          <!-- selector strip -->
+          <div style="position:absolute;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:rgba(5,9,20,.86);backdrop-filter:blur(6px);border:1px solid #26406e;border-radius:12px;padding:11px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.14em;color:#6f86c0;margin-bottom:5px;">CPU</div><select class="zk-sel" style="width:100%;" value="{{ rig.cpu }}" onChange="{{ onCpu }}"><sc-for list="{{ cpuOpts }}" as="o" hint-placeholder-count="7"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.14em;color:#6f86c0;margin-bottom:5px;">GPU</div><select class="zk-sel" style="width:100%;" value="{{ rig.gpu }}" onChange="{{ onGpu }}"><sc-for list="{{ gpuOpts }}" as="o" hint-placeholder-count="8"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.14em;color:#6f86c0;margin-bottom:5px;">RAM</div><select class="zk-sel" style="width:100%;" value="{{ rig.ram }}" onChange="{{ onRam }}"><sc-for list="{{ ramOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="zk-rev-r" style="border:1px solid #1b2542;border-radius:16px;background:linear-gradient(180deg,#0a1024,#05070f);padding:26px;display:flex;flex-direction:column;gap:20px;">
+        <div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#6f86c0;margin:0;">Estimated in game FPS</p>
+          <div style="display:flex;align-items:flex-end;gap:16px;margin-top:8px;">
+            <div class="zk-3d" style="font-family:Anton,sans-serif;font-size:72px;line-height:0.8;color:#fff;">{{ rigTuned }}</div>
+            <div style="padding-bottom:9px;">
+              <div style="font-family:Anton,sans-serif;font-size:26px;line-height:0.9;color:#7ea3ff;">{{ rigDelta }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#6f86c0;margin-top:3px;">vs {{ rigStock }} stock</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.02em;color:#7e8db0;line-height:1.5;padding:9px 12px;border:1px solid #16223f;border-radius:9px;background:rgba(6,11,24,.5);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4f7dff" stroke-width="2.2" style="flex:0 0 auto;"><circle cx="12" cy="10" r="2.6"/><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/></svg><span>Measured: {{ rigWhere }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:13px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;margin-bottom:6px;"><span style="color:#7ea3ff;font-weight:700;">OPTIMIZED</span><span style="color:#dfe8ff;">{{ rigTuned }} FPS</span></div>
+            <div style="height:8px;border-radius:5px;background:#10182e;overflow:hidden;"><div style="height:100%;width:100%;background:linear-gradient(90deg,#3f7dff,#8fb4ff);box-shadow:0 0 16px rgba(47,107,255,.6);"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#8a94ad;margin-bottom:6px;"><span>STOCK</span><span>{{ rigStock }} FPS</span></div>
+            <div style="height:8px;border-radius:5px;background:#10182e;overflow:hidden;"><div style="height:100%;width:{{ rigStockW }};background:linear-gradient(90deg,#3a4668,#6a7aa0);transition:width .6s cubic-bezier(.2,.7,.2,1);"></div></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="border:1px solid #1b2542;border-radius:10px;padding:13px;"><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6f86c0;">Input delay</div><div style="font-family:Anton,sans-serif;font-size:26px;line-height:0.9;margin-top:5px;color:#fff;">{{ rigLat }}<span style="font-size:12px;color:#7e8db0;"> ms</span></div></div>
+          <div style="border:1px solid #1b2542;border-radius:10px;padding:13px;"><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6f86c0;">1% low</div><div style="font-family:Anton,sans-serif;font-size:26px;line-height:0.9;margin-top:5px;color:#fff;">{{ rigLow }}</div></div>
+          <div style="border:1px solid #1b2542;border-radius:10px;padding:13px;"><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6f86c0;">Stability</div><div style="font-family:Anton,sans-serif;font-size:26px;line-height:0.9;margin-top:5px;color:#fff;">{{ rigStab }}<span style="font-size:12px;color:#7e8db0;">%</span></div></div>
+        </div>
+        <div style="margin-top:auto;border:1px solid #2f6bff;border-radius:12px;background:linear-gradient(180deg,rgba(47,107,255,.16),rgba(47,107,255,.04));padding:16px;">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+            <span style="width:34px;height:34px;border-radius:9px;background:rgba(47,107,255,.20);border:1px solid #2f6bff;display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7ea3ff" stroke-width="2.4"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span>
+            <div><div style="font-weight:700;font-size:14px;color:#eaf1ff;">5% discount unlocked</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#7e8db0;margin-top:3px;">For configuring your rig here</div></div>
+          </div>
+          <button onClick="{{ openRig }}" class="zk-btn" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(180deg,#3f7dff,#2b5fe0);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:15px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 12px 30px -10px rgba(47,107,255,.7);">Optimize my rig · 5% off
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+      <!-- type-your-own parts -->
+      <div style="margin-top:22px;border:1px solid #1b2542;border-radius:16px;background:linear-gradient(180deg,#0a1024,#05070f);overflow:hidden;">
+        <button onClick="{{ toggleCustom }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:transparent;border:none;color:#dfe8ff;cursor:pointer;padding:18px 22px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.05em;text-transform:uppercase;">
+          <span style="display:inline-flex;align-items:center;gap:11px;text-align:left;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7ea3ff" stroke-width="2.2" style="flex:0 0 auto;"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Can't find your exact parts? Type them in</span>
+          <span style="width:26px;height:26px;flex:0 0 auto;border:1px solid #26406e;border-radius:7px;display:flex;align-items:center;justify-content:center;transform:rotate({{ custRot }});transition:transform .3s cubic-bezier(.2,.7,.2,1);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div style="max-height:{{ custMaxH }};overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1);">
+          <div style="padding:2px 22px 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+            <sc-for list="{{ custFields }}" as="cf" hint-placeholder-count="5">
+              <div>
+                <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#6f86c0;margin-bottom:6px;">{{ cf.label }}</label>
+                <input value="{{ cf.value }}" onInput="{{ cf.onInput }}" placeholder="{{ cf.ph }}" style="width:100%;background:rgba(5,9,20,.85);border:1px solid #26406e;border-radius:8px;padding:11px 12px;color:#dfe8ff;font-size:13.5px;font-family:Inter,sans-serif;outline:none;">
+              </div>
+            </sc-for>
+          </div>
+          <p style="padding:4px 22px 14px;margin:0;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.02em;color:#6f86c0;line-height:1.6;">Cooler and motherboard don't shift the FPS estimate, but they help us prep your session. We benchmark your exact combo live and dial in the real numbers.</p>
+          <div style="padding:0 22px 22px;">
+            <button onClick="{{ analyzeCust }}" class="zk-btn" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(180deg,#3f7dff,#2b5fe0);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:14px;border:none;border-radius:9px;cursor:pointer;box-shadow:0 12px 30px -12px rgba(47,107,255,.7);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Analyze my parts</button>
+            <sc-if value="{{ custAnalyzedOk }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:14px;border:1px solid #2f6bff;border-radius:12px;background:linear-gradient(180deg,rgba(47,107,255,.14),rgba(47,107,255,.03));padding:16px;animation:zk-pop .3s cubic-bezier(.2,.7,.2,1);">
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;"><span style="width:26px;height:26px;border-radius:7px;background:rgba(47,107,255,.22);border:1px solid #2f6bff;display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7ea3ff" stroke-width="2.6"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#dfe8ff;font-weight:700;">Parts received</span></div>
+                <p style="margin:0 0 12px;color:#9aa4bd;font-size:13px;line-height:1.6;">{{ custSummary }}</p>
+                <p style="margin:0 0 14px;color:#7e8db0;font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.6;">Exact combos like yours are benchmarked live on the call. We dial in the real stock and tuned numbers on your actual rig, not an average.</p>
+                <button onClick="{{ openRig }}" class="zk-btn" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#000;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:13px;border:none;border-radius:8px;cursor:pointer;">Book my live tune · 5% off <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ custBogus }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:14px;border:1px solid #6e2f44;border-radius:12px;background:linear-gradient(180deg,rgba(255,80,120,.10),rgba(255,80,120,.02));padding:16px;animation:zk-pop .3s cubic-bezier(.2,.7,.2,1);">
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;"><span style="width:26px;height:26px;border-radius:7px;background:rgba(255,80,120,.16);border:1px solid #6e2f44;display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff8aa6" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="0.6" fill="#ff8aa6"/><circle cx="15" cy="10" r="0.6" fill="#ff8aa6"/><path d="M8.5 16c1-1.6 6-1.6 7 0"/></svg></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#ffc2d1;font-weight:700;">That's not a PC part…</span></div>
+                <p style="margin:0 0 10px;color:#f2c7d3;font-size:13.5px;line-height:1.6;">Bro, what did you just type? My benchmark opened this, sighed, and closed the laptop. That is not a real component.</p>
+                <p style="margin:0 0 14px;color:#c99aa9;font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.6;">Please put in an actual CPU, GPU and RAM kit (you know… the real stuff) and hit analyze again. Have mercy.</p>
+                <button onClick="{{ analyzeCust }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,80,120,.12);color:#ffd0dc;border:1px solid #6e2f44;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 20px;border-radius:8px;cursor:pointer;">Let me try again</button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="process" style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div style="max-width:1280px;margin:0 auto;position:relative;">
+    <div class="zk-rev" data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:54px;">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f6f6f;margin:0 0 18px;">Three steps</p>
+        <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(36px,5.2vw,72px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0;">Booked to <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">boosted.</span></h2>
+      </div>
+      <div style="max-width:420px;">
+        <p style="color:#9a9a9a;font-size:16px;line-height:1.6;margin:0 0 18px;">One live session. You watch every change. Guaranteed results before we leave the call.</p>
+        <button onClick="{{ goPricing }}" class="zk-btn zk-btnw" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:13px 22px;border:none;border-radius:4px;cursor:pointer;">Start now ↗</button>
+      </div>
+    </div>
+    <div class="zk-mcol" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div data-reveal data-delay="{{ s.delay }}" class="zk-card zk-rev-s" style="transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;border:1px solid #1c1c1c;border-radius:12px;padding:30px;background:linear-gradient(180deg,#0b0b0b,#070707);display:flex;flex-direction:column;min-height:290px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+            <span style="width:50px;height:50px;border:1px solid #24406e;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#7ea3ff;background:rgba(47,107,255,.08);" class="zk-iconbox" data-icon="{{ s.icon }}">{{ s.iconEl }}</span>
+            <span style="font-family:Anton,sans-serif;font-size:60px;line-height:0.8;background:linear-gradient(160deg,#3f7dff,#1a2c52);-webkit-background-clip:text;background-clip:text;color:transparent;">{{ s.num }}</span>
+          </div>
+          <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:25px;text-transform:uppercase;color:#fff;margin:0 0 13px;letter-spacing:0.01em;">{{ s.title }}</h3>
+          <p style="color:#9a9a9a;font-size:14.5px;line-height:1.6;margin:0 0 18px;">{{ s.body }}</p>
+          <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:7px;">
+            <sc-for list="{{ s.tags }}" as="tag">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#bdbdbd;border:1px solid #242424;padding:5px 9px;border-radius:5px;">{{ tag }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;background:#060606;">
+  <div style="position:absolute;width:620px;height:620px;border-radius:50%;top:-180px;right:-160px;background:radial-gradient(circle,rgba(47,107,255,0.16),rgba(47,107,255,0) 62%);filter:blur(16px);animation:zk-float 18s ease-in-out infinite;pointer-events:none;"></div>
+  <div style="position:absolute;width:520px;height:520px;border-radius:50%;bottom:-220px;left:-120px;background:radial-gradient(circle,rgba(56,110,220,0.12),rgba(56,110,220,0) 62%);filter:blur(20px);animation:zk-float2 22s ease-in-out infinite;pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,122,230,0.10) 1px,transparent 1px),linear-gradient(90deg,rgba(74,122,230,0.10) 1px,transparent 1px);background-size:54px 54px;opacity:0.6;pointer-events:none;-webkit-mask-image:radial-gradient(900px 560px at 50% 18%,#000,transparent 78%);mask-image:radial-gradient(900px 560px at 50% 18%,#000,transparent 78%);"></div>
+  <div style="position:absolute;width:700px;height:700px;border-radius:50%;top:-220px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,255,255,0.06),rgba(255,255,255,0) 60%);pointer-events:none;"></div>
+  <div style="max-width:1100px;margin:0 auto;position:relative;">
+    <div class="zk-rev" data-reveal style="text-align:center;max-width:680px;margin:0 auto 50px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f6f6f;margin:0 0 18px;">Two ways in</p>
+      <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,76px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0 0 18px;">Two ways to<br>go <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">fast.</span></h2>
+      <p style="color:#9a9a9a;font-size:16px;line-height:1.6;margin:0;">Every job is a live 1 on 1 with a real optimizer. Start with the full pass, then add Dual Boot for a second, separate environment on the same PC.</p>
+    </div>
+
+    <div class="zk-mcol" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch;">
+      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="2">
+        <div data-reveal data-delay="{{ sv.delay }}" class="zk-card zk-rev-s" style="transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;position:relative;border:1px solid {{ sv.border }};border-radius:14px;padding:34px;background:{{ sv.bg }};display:flex;flex-direction:column;overflow:hidden;">
+          <sc-if value="{{ sv.featured }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:0;right:0;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#000;background:#fff;padding:6px 14px;border-radius:0 14px 0 12px;">Most popular</span>
+          </sc-if>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+            <span style="width:44px;height:44px;border:1px solid #2a2a2a;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;" class="zk-iconbox">{{ sv.iconEl }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#9a9a9a;">{{ sv.label }}</span>
+          </div>
+          <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:30px;text-transform:uppercase;color:#fff;margin:0 0 6px;letter-spacing:0.01em;">{{ sv.name }}</h3>
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:18px;">
+            <span style="font-family:Anton,sans-serif;font-size:50px;line-height:0.9;background:linear-gradient(120deg,#eef4ff,#6f97ff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">{{ sv.priceEur }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8a8a8a;">{{ sv.priceUsd }} · {{ sv.unit }}</span>
+          </div>
+          <p style="color:#9a9a9a;font-size:14.5px;line-height:1.6;margin:0 0 22px;">{{ sv.desc }}</p>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px;">
+            <sc-for list="{{ sv.bullets }}" as="bl">
+              <div style="display:flex;gap:11px;align-items:flex-start;font-size:14px;color:#d6d6d6;line-height:1.45;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" style="flex:0 0 auto;margin-top:1px;"><path d="M4 12.5 9.5 18 20 6.5"/></svg><span>{{ bl }}</span></div>
+            </sc-for>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px;">
+            <button onClick="{{ sv.onClick }}" class="zk-btn {{ sv.btnClass }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:{{ sv.btnBg }};color:{{ sv.btnColor }};border:1px solid {{ sv.btnBorder }};font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:15px 22px;border-radius:5px;cursor:pointer;">{{ sv.cta }}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8a8a;text-align:center;">Read the <a href="Legal & Privacy.dc.html" style="color:#8fb4ff;text-decoration:underline;text-underline-offset:2px;font-weight:700;">TOS</a> before booking.</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUDIENCE ============ -->
+<section style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div style="position:absolute;width:560px;height:560px;border-radius:50%;top:-140px;left:-140px;background:radial-gradient(circle,rgba(47,107,255,0.13),rgba(47,107,255,0) 62%);filter:blur(18px);animation:zk-float2 24s ease-in-out infinite;pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,122,230,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(74,122,230,0.08) 1px,transparent 1px);background-size:54px 54px;pointer-events:none;-webkit-mask-image:radial-gradient(800px 520px at 22% 30%,#000,transparent 78%);mask-image:radial-gradient(800px 520px at 22% 30%,#000,transparent 78%);"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;">
+    <div class="zk-rev zk-mcol" data-reveal style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;margin-bottom:50px;">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f86c0;margin:0 0 18px;">Who it's for</p>
+        <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(34px,4.8vw,64px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0;">Built for <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">every</span> rig.</h2>
+      </div>
+      <p style="color:#9a9a9a;font-size:16px;line-height:1.65;margin:0;">Whether you're on a budget build or a flagship rig, a full pass rebuilds BIOS, Windows, and drivers from the ground up, then goes deeper with platform specific tuning, stability checks, and support. Most start with the main package. High end rigs add Dual Boot.</p>
+    </div>
+    <div class="zk-mcol" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
+      <sc-for list="{{ audience }}" as="a" hint-placeholder-count="4">
+        <div data-reveal data-delay="{{ a.delay }}" class="zk-card zk-rev-s" style="transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;border:1px solid #17203a;border-radius:12px;padding:28px;background:linear-gradient(180deg,#0a0e1c,#070910);box-shadow:inset 0 1px 0 rgba(140,170,255,.07);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <span style="width:44px;height:44px;border:1px solid #24406e;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#7ea3ff;background:rgba(47,107,255,.09);box-shadow:0 0 18px -6px rgba(47,107,255,.5);" class="zk-iconbox">{{ a.iconEl }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#7ea3ff;border:1px solid #24406e;background:rgba(47,107,255,.07);padding:5px 9px;border-radius:5px;">{{ a.kind }}</span>
+          </div>
+          <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:23px;text-transform:uppercase;color:#fff;margin:0 0 12px;letter-spacing:0.01em;">{{ a.title }}</h3>
+          <p style="color:#9a9a9a;font-size:14.5px;line-height:1.6;margin:0 0 18px;">{{ a.body }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <sc-for list="{{ a.tags }}" as="tg">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#bdbdbd;border:1px solid #242424;padding:5px 9px;border-radius:5px;">{{ tg }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LATEST UPLOAD ============ -->
+<section id="guides" style="position:relative;padding:64px 24px 118px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(90,139,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(90,139,255,.09) 1px,transparent 1px);background-size:30px 30px;background-position:center;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 42%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 80% 70% at 50% 42%,#000 40%,transparent 100%);"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;">
+    <div class="zk-rev" data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px;">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f86c0;margin:0 0 18px;">On X · @zenkytweaks</p>
+        <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(32px,4.6vw,60px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0;">Top <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;">tweets.</span></h2>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="https://x.com/zenkytweaks" target="_blank" rel="noopener" class="zk-btn" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(180deg,#3f7dff,#2b5fe0);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 20px;border-radius:9px;text-decoration:none;box-shadow:0 10px 26px -12px rgba(47,107,255,.7);">Follow on X</a>
+        <a href="https://www.tiktok.com/@zenkytweaks" target="_blank" rel="noopener" class="zk-btn zk-btno" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;border:1px solid #2c2c2c;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 20px;border-radius:9px;text-decoration:none;">TikTok @zenkytweaks</a>
+      </div>
+    </div>
+    <div id="zk-tweetgrid" ref="{{ tweetRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:14px;align-items:start;justify-items:center;min-height:360px;zoom:0.78;"></div>
+    <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#8fb4ff;font-weight:700;margin:20px 0 0;">Live from X. Real posts, real numbers, straight from the source.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" style="position:relative;padding:118px 24px;overflow:hidden;border-bottom:1px solid #131313;">
+  <div style="max-width:920px;margin:0 auto;position:relative;">
+    <div class="zk-rev" style="text-align:center;margin-bottom:46px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#6f6f6f;margin:0 0 18px;">Before you book</p>
+      <h2 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(34px,4.8vw,64px);line-height:0.94;text-transform:uppercase;color:#fff;margin:0;">Quick <span style="background:linear-gradient(120deg,#eef4ff,#5b8bff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">answers.</span></h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div onClick="{{ f.toggle }}" class="zk-faqitem zk-rev" style="border:1px solid #1c1c1c;border-radius:12px;background:#0a0a0a;padding:22px 24px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;">
+            <div style="display:flex;align-items:baseline;gap:16px;min-width:0;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#4f7dff;flex:0 0 auto;">{{ f.num }}</span>
+              <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(17px,2vw,22px);text-transform:uppercase;color:#fff;margin:0;letter-spacing:0.01em;">{{ f.q }}</h3>
+            </div>
+            <span style="width:30px;height:30px;border:1px solid #24406e;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#7ea3ff;background:rgba(47,107,255,.07);flex:0 0 auto;transform:rotate({{ f.rot }});transition:transform .3s cubic-bezier(.2,.7,.2,1);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </div>
+          <div style="max-height:{{ f.maxh }};overflow:hidden;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s;opacity:{{ f.op }};">
+            <p style="color:#9a9a9a;font-size:14.5px;line-height:1.65;margin:16px 0 0 33px;max-width:680px;">{{ f.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="text-align:center;margin-top:42px;">
+      <p style="color:#cdd7ee;font-size:15px;font-weight:600;margin:0 0 18px;">Still not sure? Run the free test. No card, no catch.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+        <button onClick="{{ goPricing }}" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:#000;box-shadow:0 0 26px -4px rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:15px 30px;border:none;border-radius:9px;cursor:pointer;">Get Optimized</button>
+        <a href="#simulator" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(180deg,#4d88ff,#2f6bff);color:#fff;text-shadow:0 0 12px rgba(255,255,255,.45);border:none;box-shadow:0 0 30px -3px rgba(60,120,255,.8),0 12px 30px -8px rgba(47,107,255,.6);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:15px 28px;border-radius:9px;text-decoration:none;">Free FPS test →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="border-top:1px solid #131c30;background:#05070f;position:relative;">
+  <div class="zk-mcol" style="max-width:1180px;margin:0 auto;padding:60px 24px 0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:start;">
+    <div>
+      <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;margin-bottom:16px;">
+        <img src="assets/logo.webp" alt="Zenky Tweaks" style="height:34px;width:auto;display:block;filter:drop-shadow(0 0 12px rgba(79,125,255,.4));">
+        <span style="font-family:Anton,sans-serif;font-size:21px;letter-spacing:0.04em;text-transform:uppercase;color:#fff;">Zenky Tweaks</span>
+      </a>
+      <p style="color:#8a94ad;font-size:14px;line-height:1.65;max-width:340px;margin:0 0 22px;">Hand tuned PC optimization for competitive players. Deep BIOS and Windows work that cuts input delay and lifts FPS. No one click scripts.</p>
+      <div style="display:flex;gap:10px;"><a href="https://www.tiktok.com/@zenkytweaks" target="_blank" rel="noopener" class="zk-btn" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8fb4ff;border:1px solid #24406e;background:rgba(47,107,255,.06);padding:9px 14px;border-radius:8px;text-decoration:none;">TikTok</a><a href="https://discord.gg/zenkytweaks" target="_blank" rel="noopener" class="zk-btn" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8fb4ff;border:1px solid #24406e;background:rgba(47,107,255,.06);padding:9px 14px;border-radius:8px;text-decoration:none;">Discord</a><a href="https://x.com/zenkytweaks" target="_blank" rel="noopener" class="zk-btn" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8fb4ff;border:1px solid #24406e;background:rgba(47,107,255,.06);padding:9px 14px;border-radius:8px;text-decoration:none;">X</a></div>
+    </div>
+    <div>
+      <h4 style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6f86c0;margin:0 0 18px;">Explore</h4>
+      <div style="display:flex;flex-direction:column;gap:12px;"><a href="#results" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Results</a><a href="#reviews" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Reviews</a><a href="#simulator" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">FPS estimator</a><a href="#pricing" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Pricing</a><a href="#guides" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Top tweets</a></div>
+    </div>
+    <div>
+      <h4 style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6f86c0;margin:0 0 18px;">Company</h4>
+      <div style="display:flex;flex-direction:column;gap:12px;"><a href="#simulator" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Free PC check</a><a href="https://discord.gg/zenkytweaks" target="_blank" rel="noopener" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Join the Discord</a><a href="Legal & Privacy.dc.html" class="zk-link" style="font-size:14px;color:#9aa4bd;text-decoration:none;">Legal & Privacy</a></div>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:44px auto 0;padding:22px 24px;border-top:1px solid #131c30;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#54648a;">© 2026 ZENKYTWEAKS · Performance Tuning.</span>
+    <a href="Legal & Privacy.dc.html" class="zk-link" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8fb4ff;text-decoration:none;">Legal &amp; Privacy</a>
+  </div>
+</footer>
+
+
+<!-- ============ PROOF LIGHTBOX ============ -->
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:420;background:rgba(3,5,10,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:44px;cursor:zoom-out;animation:zk-pop .25s cubic-bezier(.2,.7,.2,1);">
+    <img src="{{ lightboxSrc }}" alt="Proof screenshot, zoomed" style="max-width:min(1100px,94vw);max-height:86vh;border-radius:14px;border:1px solid #2f6bff;box-shadow:0 0 0 1px rgba(47,107,255,.4),0 40px 120px -30px rgba(0,0,0,.9),0 0 90px -18px rgba(47,107,255,.55);object-fit:contain;">
+  </div>
+</sc-if>
+
+<!-- ============ EXIT-INTENT POPUP ============ -->
+<sc-if value="{{ exitOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeExit }}" style="position:fixed;inset:0;z-index:110;background:rgba(2,4,10,.82);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;animation:zk-fade .25s ease;">
+    <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:440px;border:1px solid #24406e;border-radius:18px;background:radial-gradient(120% 82% at 50% 0%,#0b1430,#05070f 72%);box-shadow:0 50px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(47,107,255,.1);animation:zk-pop .35s cubic-bezier(.2,.7,.2,1);padding:34px 30px 28px;text-align:center;">
+      <button onClick="{{ closeExit }}" style="position:absolute;top:16px;right:16px;width:30px;height:30px;border:none;background:transparent;color:#6f86c0;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+      <div style="width:72px;height:72px;margin:0 auto 20px;border-radius:18px;background:radial-gradient(circle at 50% 30%,rgba(47,107,255,.32),rgba(47,107,255,.12));border:1px solid #2f6bff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(47,107,255,.5);animation:zk-glow 2.4s ease-in-out infinite;">
+        <span style="font-family:Anton,sans-serif;font-size:26px;line-height:0.8;color:#fff;">−5%</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:0.16em;text-transform:uppercase;color:#9fc0ff;margin-top:3px;">unlocked</span>
+      </div>
+      <h3 class="zk-3d" style="font-family:Anton,sans-serif;font-weight:400;font-size:clamp(28px,6vw,34px);line-height:0.98;text-transform:uppercase;color:#fff;margin:0 0 14px;">Drop in your<br>parts first.</h3>
+      <p style="color:#9aa4bd;font-size:15px;line-height:1.6;margin:0 auto 22px;max-width:340px;">Run the <a href="#simulator" onClick="{{ exitGo }}" style="color:#7ea3ff;font-weight:800;text-transform:uppercase;letter-spacing:0.02em;text-decoration:underline;text-underline-offset:2px;">FREE PC TEST</a> to uncover the frames your rig is hiding, then lock in <span style="color:#7ea3ff;font-weight:700;">5% off</span> your tune before you close the tab.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;text-align:left;max-width:300px;margin:0 auto 26px;">
+        <div style="display:flex;align-items:center;gap:11px;color:#dfe8ff;font-size:14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f7dff" stroke-width="2.4" style="flex:0 0 auto;"><circle cx="12" cy="12" r="9"/><path d="M8 12.5 11 15.5 16 9"/></svg>Free FPS estimate for your exact parts</div>
+        <div style="display:flex;align-items:center;gap:11px;color:#dfe8ff;font-size:14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f7dff" stroke-width="2.4" style="flex:0 0 auto;"><circle cx="12" cy="12" r="9"/><path d="M8 12.5 11 15.5 16 9"/></svg>Spot the bottleneck killing your frames</div>
+        <div style="display:flex;align-items:center;gap:11px;color:#dfe8ff;font-size:14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f7dff" stroke-width="2.4" style="flex:0 0 auto;"><circle cx="12" cy="12" r="9"/><path d="M8 12.5 11 15.5 16 9"/></svg>5% off unlocked, no card, no catch</div>
+      </div>
+      <button onClick="{{ exitGo }}" class="zk-btn" style="width:100%;background:linear-gradient(180deg,#3f7dff,#2b5fe0);color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:16px;border:none;border-radius:9px;cursor:pointer;box-shadow:0 14px 34px -10px rgba(47,107,255,.7);">Run the free test · save 5%</button>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;margin-top:16px;color:#54648a;">Join 1,7K+ optimized rigs</div>
+    </div>
+  </div>
+</sc-if>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.78);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;animation:zk-fade .25s ease;">
+    <div onClick="{{ stop }}" style="width:100%;max-width:520px;max-height:92vh;overflow-y:auto;border:1px solid #242424;border-radius:16px;background:linear-gradient(180deg,#0d0d0d,#070707);box-shadow:0 50px 120px -30px rgba(0,0,0,.9);animation:zk-pop .35s cubic-bezier(.2,.7,.2,1);">
+      <!-- modal header -->
+      <div style="position:relative;padding:24px 26px;border-bottom:1px solid #1a1a1a;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="assets/logo.webp" alt="Zenky" style="height:30px;width:auto;display:block;">
+          <span style="font-family:Anton,sans-serif;font-size:17px;letter-spacing:0.04em;text-transform:uppercase;">Zenky Checkout</span>
+        </div>
+        <button onClick="{{ closeModal }}" style="position:absolute;top:20px;right:20px;width:34px;height:34px;border:1px solid #2a2a2a;background:transparent;color:#fff;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 5l14 14M19 5 5 19"/></svg>
+        </button>
+        <!-- progress -->
+        <div style="display:flex;align-items:center;gap:8px;margin-top:20px;">
+          <sc-for list="{{ stepDots }}" as="d" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="width:22px;height:22px;border-radius:50%;border:1px solid {{ d.border }};background:{{ d.bg }};color:{{ d.color }};font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">{{ d.label }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:{{ d.txt }};">{{ d.name }}</span>
+              <sc-if value="{{ d.line }}" hint-placeholder-val="{{ false }}"><span style="width:22px;height:1px;background:#2a2a2a;"></span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- STEP 1: details -->
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:26px;">
+          <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:24px;text-transform:uppercase;margin:0 0 6px;">Your details</h3>
+          <p style="color:#8a8a8a;font-size:13.5px;line-height:1.55;margin:0 0 22px;">We'll send your session confirmation and prep checklist here.</p>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:22px;">
+            <div>
+              <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8a8a;margin-bottom:8px;">Full name</label>
+              <input class="zk-input" value="{{ form.name }}" onInput="{{ setName }}" placeholder="Your name or gamertag" style="width:100%;background:#000;border:1px solid #2a2a2a;border-radius:6px;padding:13px 14px;color:#fff;font-size:15px;transition:border-color .2s;">
+            </div>
+            <div>
+              <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8a8a;margin-bottom:8px;">Email</label>
+              <input class="zk-input" value="{{ form.email }}" onInput="{{ setEmail }}" placeholder="you@email.com" type="email" style="width:100%;background:#000;border:1px solid #2a2a2a;border-radius:6px;padding:13px 14px;color:#fff;font-size:15px;transition:border-color .2s;">
+            </div>
+          </div>
+
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6f6f6f;margin:0 0 12px;">Your order</p>
+          <div style="border:1px solid #1c1c1c;border-radius:10px;overflow:hidden;margin-bottom:22px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid #161616;">
+              <div style="display:flex;align-items:center;gap:11px;">
+                <span style="width:34px;height:34px;border:1px solid #2a2a2a;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12z"/></svg></span>
+                <div><div style="font-weight:600;font-size:14px;">PC Optimization &amp; Overclocking</div><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#777;margin-top:3px;">~3 hr live session</div></div>
+              </div>
+              <span style="font-family:Anton,sans-serif;font-size:20px;">50€</span>
+            </div>
+            <div onClick="{{ toggleDualBoot }}" style="display:flex;align-items:center;justify-content:space-between;padding:15px 16px;cursor:pointer;">
+              <div style="display:flex;align-items:center;gap:11px;">
+                <span style="width:22px;height:22px;border:1px solid {{ dualBorder }};border-radius:6px;background:{{ dualBg }};color:#000;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">{{ dualCheck }}</span>
+                <div><div style="font-weight:600;font-size:14px;">Add Dual Boot Setup</div><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#777;margin-top:3px;">Second separate Windows environment</div></div>
+              </div>
+              <span style="font-family:Anton,sans-serif;font-size:18px;color:#cfcfcf;">+8€</span>
+            </div>
+            <sc-if value="{{ discountActive }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-top:1px solid #161616;">
+                <div style="display:flex;align-items:center;gap:11px;">
+                  <span style="width:34px;height:34px;border:1px solid #2f6bff;border-radius:8px;background:rgba(47,107,255,.16);color:#7ea3ff;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">%</span>
+                  <div><div style="font-weight:600;font-size:14px;">Rig configurator discount</div><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#7e8db0;margin-top:3px;">5% off, unlocked in the FPS estimator</div></div>
+                </div>
+                <span style="font-family:Anton,sans-serif;font-size:18px;color:#7ea3ff;">−5%</span>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9a9a9a;">Total</span>
+            <span style="font-family:Anton,sans-serif;font-size:34px;background:linear-gradient(120deg,#eef4ff,#6f97ff,#a9c2ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(47,107,255,.4);">{{ totalEur }}<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8a8a;margin-left:8px;-webkit-text-fill-color:#8a8a8a;">{{ totalUsd }}</span></span>
+          </div>
+
+          <button onClick="{{ goPayment }}" class="zk-btn zk-btnw" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:{{ contBg }};color:{{ contColor }};font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:16px;border:none;border-radius:7px;cursor:{{ contCursor }};opacity:{{ contOpacity }};">Continue to payment
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <sc-if value="{{ formMsg }}" hint-placeholder-val="">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#e08a8a;margin:12px 0 0;text-align:center;">{{ formMsg }}</p>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- STEP 2: payment -->
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:26px;">
+          <button onClick="{{ backToDetails }}" style="display:inline-flex;align-items:center;gap:7px;background:transparent;border:none;color:#9a9a9a;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;margin-bottom:16px;padding:0;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 6 5 12l6 6"/></svg>Back</button>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:24px;text-transform:uppercase;margin:0;">Payment</h3>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#777;display:flex;align-items:center;gap:7px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9a9a9a" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secured by Stripe</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid #1c1c1c;border-radius:9px;padding:13px 15px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9a9a9a;">Charging</span>
+            <span style="font-family:Anton,sans-serif;font-size:24px;">{{ totalEur }}<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8a8a;margin-left:7px;">{{ totalUsd }}</span></span>
+          </div>
+
+          <div ref="{{ payRef }}" style="min-height:220px;"></div>
+
+          <sc-if value="{{ payUnavailable }}" hint-placeholder-val="{{ false }}">
+            <div style="min-height:200px;border:1px dashed #2a2a2a;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px;text-align:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6a6a6a" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9a9a;letter-spacing:0.06em;">Secure card form</span>
+              <span style="font-size:12.5px;color:#666;">It loads right here. Check your connection if it doesn't appear.</span>
+            </div>
+          </sc-if>
+
+          <button onClick="{{ pay }}" class="zk-btn zk-btnw" style="width:100%;margin-top:20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#000;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;padding:17px;border:none;border-radius:7px;cursor:pointer;">
+            <sc-if value="{{ processing }}" hint-placeholder-val="{{ false }}"><span style="width:15px;height:15px;border:2px solid rgba(0,0,0,.25);border-top-color:#000;border-radius:50%;animation:zk-spin .7s linear infinite;display:inline-block;"></span></sc-if>{{ payBtnLabel }}</button>
+          <sc-if value="{{ payMsg }}" hint-placeholder-val="">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#e08a8a;margin:12px 0 0;text-align:center;">{{ payMsg }}</p>
+          </sc-if>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#5a5a5a;margin:14px 0 0;text-align:center;line-height:1.6;">Encrypted &amp; processed by Stripe. We never store your card.</p>
+        </div>
+      </sc-if>
+
+      <!-- STEP 3: success -->
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:40px 26px;text-align:center;">
+          <div style="width:68px;height:68px;border:1.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M4 12.5 9.5 18 20 6.5"/></svg>
+          </div>
+          <h3 style="font-family:Anton,sans-serif;font-weight:400;font-size:28px;text-transform:uppercase;margin:0 0 10px;">You're locked in.</h3>
+          <p style="color:#9a9a9a;font-size:14.5px;line-height:1.6;margin:0 0 26px;">Details accepted, {{ greetName }}. Next, pick your session slot. We'll confirm within minutes and send your prep checklist to {{ form.email }}.</p>
+          <button onClick="{{ closeModal }}" class="zk-btn zk-btnw" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:#000;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:15px 26px;border:none;border-radius:7px;cursor:pointer;">Pick my session slot ↗</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  payRef = React.createRef();
+  cmpRef = React.createRef();
+  tweetRef = React.createRef();
+  revTrackRef = React.createRef();
+  bgRef = React.createRef();
+  heroRef = React.createRef();
+  heroFpsRef = React.createRef();
+  heroHitsRef = React.createRef();
+  headerRef = React.createRef();
+  state = {
+    heroFps: 39, heroProc: 60, heroSlide: 0,
+    activeGame: 0, chartReady: false,
+    disp: { f0: 0, f1: 0, l0: 0, l1: 0 },
+    modalOpen: false, step: 1,
+    name: '', email: '', dualBoot: false,
+    formMsg: '', payState: 'idle', payMsg: '',
+    sim: { bios: false, windows: false, oc: false, ram: false }, faqOpen: -1,
+    rig: { cpu: 16, gpu: 31, ram: 11, game: 0, res: 0 }, exitOpen: false, discount: false,
+    customOpen: false, custAnalyzed: false, custBogus: false, cust: { cpu: '', cooler: '', mobo: '', ram: '', gpu: '' }
+  };
+
+  games = [
+    { key: 'Fortnite', color: '#7c5cff', fpsStock: 236, fpsTuned: 312, latStock: 9.4, latTuned: 5.1, sub: 'R7 9850X3D · RX 6700 XT · 6000 CL28 (tuned) · 1080p' },
+    { key: 'Valorant', color: '#ff4655', fpsStock: 388, fpsTuned: 521, latStock: 8.6, latTuned: 4.3, sub: 'R7 9850X3D · RX 6700 XT · 6000 CL28 (tuned) · 1080p' },
+    { key: 'CS2', color: '#f5a623', fpsStock: 402, fpsTuned: 534, latStock: 8.7, latTuned: 4.8, sub: 'R7 9850X3D · RX 6700 XT · 6000 CL28 (tuned) · 1080p' }
+  ];
+
+  componentDidMount() {
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        if (el.hasAttribute('data-chart')) {
+          if (!this.state.chartReady) this.setState({ chartReady: true, disp: this._targets(this.state.activeGame) });
+          this._io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+    requestAnimationFrame(() => {
+      const root = this.rootRef.current;
+      if (!root) return;
+      root.querySelectorAll('[data-chart]').forEach((el) => this._io.observe(el));
+    });
+    requestAnimationFrame(() => {
+      const cmp = this.cmpRef.current;
+      if (cmp) {
+        const set = (x) => { const r = cmp.getBoundingClientRect(); let p = (x - r.left) / r.width * 100; p = Math.max(2, Math.min(98, p)); cmp.style.setProperty('--rev', p + '%'); };
+        cmp.addEventListener('pointermove', (e) => set(e.clientX));
+      }
+    });
+    this._onScroll = () => { const el = this.headerRef.current; if (!el) return; const y = window.scrollY || (document.scrollingElement && document.scrollingElement.scrollTop) || document.body.scrollTop || 0; el.classList.toggle('is-scrolled', y > 20); };
+    window.addEventListener('scroll', this._onScroll, { passive: true, capture: true }); this._onScroll();
+    this._onCardClick = (e) => { const card = e.target.closest && e.target.closest('.zk-card'); if (!card || !this.rootRef.current || !this.rootRef.current.contains(card)) return; if (e.target.closest('a,button,input,select,textarea')) return; card.classList.toggle('zk-glow'); };
+    requestAnimationFrame(() => { const root = this.rootRef.current; if (root) root.addEventListener('click', this._onCardClick); });
+    requestAnimationFrame(() => {
+      const root = this.rootRef.current; if (!root) return;
+      root.querySelectorAll('#reviews .zk-rev-s').forEach((card) => {
+        card.style.transformStyle = 'preserve-3d';
+        card.style.willChange = 'transform';
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transition = 'transform .08s ease-out';
+          card.style.transform = 'perspective(900px) rotateX(' + (-py * 7).toFixed(2) + 'deg) rotateY(' + (px * 7).toFixed(2) + 'deg) translateY(-6px) scale(1.02)';
+          card.style.boxShadow = '0 30px 60px -24px rgba(0,0,0,.85),0 0 50px -6px rgba(255,255,255,.18)';
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.transition = 'transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s';
+          card.style.transform = '';
+          card.style.boxShadow = '';
+        });
+      });
+    });
+    requestAnimationFrame(() => { this._initBg(); this._initExit(); this._initHero(); this._resetHeroTimer(); this._initHeroVideosSetup(); setTimeout(() => { try { this.rootRef.current.querySelectorAll('video').forEach((v) => { v.muted = true; const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }); } catch (e) {} }, 80); });
+    this._onResizeTweets = () => { this._layoutTweets(); this._fitRig(); };
+    window.addEventListener('resize', this._onResizeTweets, { passive: true });
+    requestAnimationFrame(() => this._fitRig());
+    [120, 500].forEach((d) => setTimeout(() => this._fitRig(), d));
+    this._t0 = Date.now();
+    requestAnimationFrame(() => this._initTweets());
+    requestAnimationFrame(() => this._initRevLoop());    requestAnimationFrame(() => {
+      this._layoutTweets();
+      const grid = this.rootRef.current && this.rootRef.current.querySelector('#zk-tweetgrid');
+      if (grid) grid.querySelectorAll('img').forEach((im) => { if (!im.complete) im.addEventListener('load', this._onResizeTweets, { once: true }); });
+      [120, 400, 900].forEach((d) => setTimeout(() => this._layoutTweets(), d));
+    });
+  }
+
+  _fitRig = () => {
+    const root = this.rootRef.current; if (!root) return;
+    const panel = root.querySelector('#simulator .zk-rev-l'); if (!panel) return;
+    const DESIGN = 451; // desktop design width the fixed-px rig art is built for
+    if (window.innerWidth <= 820) {
+      const avail = (panel.parentElement && panel.parentElement.clientWidth) || panel.clientWidth || DESIGN;
+      panel.style.width = DESIGN + 'px';
+      panel.style.zoom = Math.min(1, avail / DESIGN).toFixed(3);
+    } else {
+      panel.style.width = '';
+      panel.style.zoom = '';
+    }
+  };
+
+  _layoutTweets() {
+    const root = this.rootRef.current; if (!root) return;
+    const grid = root.querySelector('#zk-tweetgrid'); if (!grid) return;
+    const cards = Array.prototype.slice.call(grid.querySelectorAll('.zk-card'));
+    if (!cards.length) return;
+    const gap = 18;
+    const w = grid.clientWidth;
+    let cols = 3; if (w < 700) cols = 1; else if (w < 1000) cols = 2;
+    const colW = (w - gap * (cols - 1)) / cols;
+    const heights = new Array(cols).fill(0);
+    cards.forEach((c) => {
+      c.style.position = 'absolute';
+      c.style.width = colW + 'px';
+      c.style.marginBottom = '0';
+      let col = 0; for (let i = 1; i < cols; i++) { if (heights[i] < heights[col]) col = i; }
+      c.style.left = (col * (colW + gap)) + 'px';
+      c.style.top = heights[col] + 'px';
+      heights[col] += c.getBoundingClientRect().height + gap;
+    });
+    grid.style.height = (Math.max.apply(null, heights) - gap) + 'px';
+  }
+
+  setRig = (k) => (e) => { const v = parseInt(e.target.value, 10) || 0; this.setState((s) => ({ rig: { ...s.rig, [k]: v } })); };
+  closeExit = () => { try { sessionStorage.setItem('zk_exit_seen', '1'); } catch (e) {} this.setState({ exitOpen: false }); };
+  exitGo = () => { this.closeExit(); try { location.hash = '#simulator'; } catch (e) {} };
+  openRig = () => { this.setState({ discount: true }); try { location.hash = '#pricing'; } catch (e) {} };
+  toggleSim = (k) => this.setState((s) => ({ sim: { ...s.sim, [k]: !s.sim[k] } }));
+  applyAll = () => this.setState((s) => { const all = s.sim.bios && s.sim.windows && s.sim.oc && s.sim.ram; const v = !all; return { sim: { bios: v, windows: v, oc: v, ram: v } }; });
+  toggleFaq = (i) => this.setState((s) => ({ faqOpen: s.faqOpen === i ? -1 : i }));
+  toggleCustom = () => this.setState((s) => ({ customOpen: !s.customOpen }));
+  analyzeCust = () => {
+    const c = this.state.cust;
+    const kw = /(ryzen|intel|core|i[3-9]|threadripper|epyc|xeon|pentium|athlon|celeron|rtx|gtx|geforce|nvidia|\brx\b|radeon|\barc\b|amd|ddr[45]?|corsair|g\.?skill|kingston|crucial|teamgroup|trident|vengeance|fury|super|\bti\b|noctua)/i;
+    const looksReal = (v) => { v = (v || '').trim(); if (!v) return true; return /\d/.test(v) || kw.test(v); };
+    const perf = [c.cpu, c.gpu, c.ram];
+    const anyFilled = perf.some((v) => (v || '').trim());
+    const bogus = anyFilled && perf.some((v) => (v || '').trim() && !looksReal(v));
+    this.setState({ custAnalyzed: true, custBogus: bogus });
+  };
+  setCust = (k) => (e) => { const v = e.target.value; this.setState((s) => ({ cust: { ...s.cust, [k]: v } })); };
+
+  _initBg() {
+    const cv = this.bgRef.current; if (!cv) return;
+    const ctx = cv.getContext('2d'); let w = 0, h = 0; const dpr = Math.min(2, window.devicePixelRatio || 1);
+    let pts = []; let snow = []; let scrollY = 0; let t = 0; let heroEl = document.querySelector('[data-hero]');
+    const build = () => {
+      const n = Math.min(15, Math.floor(window.innerWidth / 120)); pts = [];
+      for (let i = 0; i < n; i++) {
+        const z = Math.random();
+        pts.push({
+          x: Math.random(), y: Math.random(), z: z,
+          vx: (Math.random() - 0.5) * 0.00004 * (0.4 + z),
+          vy: -(0.00001 + Math.random() * 0.00003) * (0.3 + z),
+          accent: Math.random() < 0.42,
+          tw: Math.random() * 6.283, tws: 0.0016 + Math.random() * 0.0032
+        });
+      }
+      const sn = Math.min(64, Math.floor(window.innerWidth / 20)); snow = [];
+      for (let i = 0; i < sn; i++) {
+        const z = Math.random();
+        snow.push({
+          x: Math.random(), y: Math.random(), z: z,
+          vx: (Math.random() - 0.5) * 0.00012 * (0.4 + z),
+          vy: -(0.00003 + Math.random() * 0.00009) * (0.3 + z),
+          accent: Math.random() < 0.3,
+          tw: Math.random() * 6.283, tws: 0.004 + Math.random() * 0.009
+        });
+      }
+    };
+    const resize = () => { w = cv.clientWidth; h = cv.clientHeight; cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); heroEl = document.querySelector('[data-hero]'); build(); };
+    const wrap = (v) => ((v % 1) + 1) % 1;
+    const draw = () => {
+      t += 1; ctx.clearRect(0, 0, w, h);
+      const par = scrollY || 0;
+      for (const p of pts) {
+        p.x = wrap(p.x + p.vx); p.y = wrap(p.y + p.vy); p.tw += p.tws;
+        const depth = 0.4 + p.z * p.z;
+        const px = p.x * w;
+        const py = wrap(p.y - par * (0.00003 + p.z * 0.00010)) * h;   // layered scroll parallax
+        const tw = 0.6 + 0.4 * Math.sin(p.tw);
+        const rad = (120 + depth * 260);                              // large soft atmospheric glow
+        const a = (0.03 + p.z * 0.07) * tw;
+        const g = ctx.createRadialGradient(px, py, 0, px, py, rad);
+        if (p.accent) { g.addColorStop(0, 'rgba(60,110,235,' + a + ')'); g.addColorStop(0.6, 'rgba(60,110,235,' + (a * 0.35) + ')'); g.addColorStop(1, 'rgba(60,110,235,0)'); }
+        else { g.addColorStop(0, 'rgba(120,145,205,' + (a * 0.7) + ')'); g.addColorStop(1, 'rgba(120,145,205,0)'); }
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(px, py, rad, 0, 6.2832); ctx.fill();
+      }
+      // snow — everywhere EXCEPT over the hero section
+      let hb = -1; if (heroEl) { const r = heroEl.getBoundingClientRect(); hb = r.bottom; }
+      for (const s of snow) {
+        s.x = wrap(s.x + s.vx); s.y = wrap(s.y + s.vy); s.tw += s.tws;
+        const px = s.x * w;
+        const py = wrap(s.y - par * (0.00004 + s.z * 0.00016)) * h;
+        let gate = 1;
+        if (py < hb) gate = 0; else if (py < hb + 140) gate = (py - hb) / 140;   // fade in below hero
+        if (gate <= 0) continue;
+        const tw = 0.5 + 0.5 * Math.sin(s.tw);
+        const r = 0.5 + s.z * 1.7;
+        const a = (0.16 + s.z * 0.5) * tw * gate;
+        ctx.beginPath(); ctx.arc(px, py, r, 0, 6.2832);
+        ctx.fillStyle = s.accent ? 'rgba(150,182,255,' + a + ')' : 'rgba(214,224,245,' + (a * 0.78) + ')';
+        ctx.fill();
+      }
+      this._raf = requestAnimationFrame(draw);
+    };
+    resize(); this._onResize = resize; window.addEventListener('resize', resize);
+    this._bgScroll = () => { scrollY = window.scrollY || (document.scrollingElement && document.scrollingElement.scrollTop) || 0; };
+    window.addEventListener('scroll', this._bgScroll, { passive: true, capture: true }); this._bgScroll();
+    draw();
+  }
+
+  _initHeroVideosSetup() {
+    const start = () => this._initHeroVideos();
+    if (window.YT && window.YT.Player) { start(); return; }
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { if (typeof prev === 'function') { try { prev(); } catch (e) {} } start(); };
+    let tries = 0;
+    this._ytPoll = setInterval(() => { tries++; if (window.YT && window.YT.Player) { clearInterval(this._ytPoll); start(); } else if (tries > 80) { clearInterval(this._ytPoll); } }, 250);
+  }
+
+  _initHeroVideos() {
+    if (this._ytInit) return;
+    const root = this.rootRef.current; if (!root) return;
+    const mounts = Array.prototype.slice.call(root.querySelectorAll('.hero-yt'));
+    if (!mounts.length) return;
+    this._ytInit = true;
+    this._ytPlayers = [];
+    mounts.forEach((mount) => {
+      const vid = mount.getAttribute('data-vid'); if (!vid) return;
+      const inner = document.createElement('div');   // YT replaces this node with its iframe
+      mount.appendChild(inner);
+      try {
+        const player = new YT.Player(inner, {
+          videoId: vid, width: '100%', height: '100%',
+          playerVars: { autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, modestbranding: 1, rel: 0, playsinline: 1, iv_load_policy: 3, start: 2 },
+          events: {
+            onReady: (e) => { try { e.target.mute(); e.target.seekTo(2, true); e.target.playVideo(); } catch (err) {} },
+            onStateChange: (e) => { if (e.data === 0) { try { e.target.seekTo(2, true); e.target.playVideo(); } catch (err) {} } }
+          }
+        });
+        this._ytPlayers.push(player);
+      } catch (e) {}
+    });
+    this._ytLoop = setInterval(() => {
+      (this._ytPlayers || []).forEach((p) => {
+        try { if (p && p.getCurrentTime) { const t = p.getCurrentTime(); if (t >= 12 || t < 1.6) p.seekTo(2, true); } } catch (e) {}
+      });
+    }, 300);
+  }
+
+  _initHero() {
+    const cv = this.heroRef.current; if (!cv) return;
+    const ctx = cv.getContext('2d'); let w = 0, h = 0; const dpr = Math.min(2, window.devicePixelRatio || 1);
+    let bullets = [], parts = [], rings = [], fps = 1084, tgt = 1084, frame = 0, hits = 0, pulse = 0;
+    let px = 0, py = 0, hasMouse = false;
+    const runner = { x: 0, y: 0, dir: 1, speed: 2.1, phase: 0, flash: 0 };
+    const resize = () => { w = cv.clientWidth; h = cv.clientHeight; cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); px = w * 0.6; py = h * 0.5; runner.x = w * 0.5; runner.y = h * 0.56; };
+    const rect = () => cv.getBoundingClientRect();
+    const aim = (e) => { const r = rect(); px = e.clientX - r.left; py = e.clientY - r.top; hasMouse = true; };
+    const fire = () => { const mx = 8, my = h - 8, ang = Math.atan2(py - my, px - mx), sp = 13; bullets.push({ x: mx, y: my, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, len: 26, w: 1.6 }); };
+    cv.style.cursor = 'crosshair';
+    cv.addEventListener('pointermove', aim);
+    cv.addEventListener('pointerleave', () => { hasMouse = false; });
+    cv.addEventListener('pointerdown', (e) => { aim(e); fire(); });
+    const hitRunner = () => { hits++; runner.flash = 1; pulse = 1; for (let i = 0; i < 16; i++) { const a = Math.random() * 6.283, s = 1 + Math.random() * 4; parts.push({ x: runner.x, y: runner.y - 10, vx: Math.cos(a) * s, vy: Math.sin(a) * s, a: 1, r: 1 + Math.random() * 2 }); } rings.push({ x: runner.x, y: runner.y - 10, r: 6, a: 0.9 }); runner.x = runner.dir > 0 ? -20 : w + 20; if (this.heroHitsRef.current) this.heroHitsRef.current.textContent = hits; };
+    const drawRunner = (locked) => {
+      const bob = Math.abs(Math.sin(runner.phase * 2)) * 3, hx = runner.x, hy = runner.y - bob;
+      const c = runner.flash > 0 ? '#ffffff' : (locked ? '#7ee0a8' : '#9fb4e6');
+      ctx.strokeStyle = c; ctx.fillStyle = c; ctx.lineWidth = 2.4; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.arc(hx, hy - 17, 4.6, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(hx, hy - 12); ctx.lineTo(hx, hy - 1); ctx.stroke();
+      const l = Math.sin(runner.phase) * 6;
+      ctx.beginPath(); ctx.moveTo(hx, hy - 1); ctx.lineTo(hx + runner.dir * (4 + l), hy + 9); ctx.moveTo(hx, hy - 1); ctx.lineTo(hx - runner.dir * (4 - l), hy + 9); ctx.stroke();
+      const a2 = Math.sin(runner.phase + 3.14) * 5;
+      ctx.beginPath(); ctx.moveTo(hx, hy - 9); ctx.lineTo(hx + runner.dir * (3 + a2), hy - 3); ctx.moveTo(hx, hy - 9); ctx.lineTo(hx - runner.dir * (3 - a2), hy - 3); ctx.stroke();
+    };
+    const draw = () => {
+      frame++;
+      ctx.clearRect(0, 0, w, h);
+      runner.x += runner.dir * runner.speed; runner.phase += 0.22;
+      if (runner.x > w - 24) runner.dir = -1; if (runner.x < 24) runner.dir = 1;
+      runner.y = h * 0.56 + Math.sin(frame * 0.02) * (h * 0.12);
+      if (runner.flash > 0) runner.flash -= 0.08;
+      if (!hasMouse) { px += (runner.x - px) * 0.035; py += (runner.y - 10 - py) * 0.035; }
+      const locked = Math.hypot(px - runner.x, py - (runner.y - 10)) < 22;
+      const g = ctx.createRadialGradient(px, py, 0, px, py, 130); g.addColorStop(0, 'rgba(47,107,255,' + (0.08 + pulse * 0.2) + ')'); g.addColorStop(1, 'rgba(47,107,255,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      if (frame % 16 === 0) fire();
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        const b = bullets[i]; b.x += b.vx; b.y += b.vy;
+        const spd = Math.hypot(b.vx, b.vy), bx = b.x - b.vx / spd * b.len, by = b.y - b.vy / spd * b.len;
+        const lg = ctx.createLinearGradient(bx, by, b.x, b.y); lg.addColorStop(0, 'rgba(79,125,255,0)'); lg.addColorStop(0.7, 'rgba(120,160,255,0.5)'); lg.addColorStop(1, 'rgba(233,241,255,0.95)');
+        ctx.strokeStyle = lg; ctx.lineWidth = b.w; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(b.x, b.y); ctx.stroke();
+        ctx.fillStyle = 'rgba(235,242,255,0.95)'; ctx.beginPath(); ctx.arc(b.x, b.y, b.w * 0.9, 0, 6.283); ctx.fill();
+        if (Math.hypot(b.x - runner.x, b.y - (runner.y - 10)) < 16) { hitRunner(); bullets.splice(i, 1); continue; }
+        if (b.x < -30 || b.x > w + 30 || b.y < -30 || b.y > h + 30) bullets.splice(i, 1);
+      }
+      const rad = 15, cc = locked ? 'rgba(126,224,168,0.95)' : 'rgba(150,185,255,0.9)';
+      ctx.strokeStyle = cc; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.arc(px, py, rad, 0, 6.283); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px - rad - 7, py); ctx.lineTo(px - rad + 3, py); ctx.moveTo(px + rad - 3, py); ctx.lineTo(px + rad + 7, py); ctx.moveTo(px, py - rad - 7); ctx.lineTo(px, py - rad + 3); ctx.moveTo(px, py + rad - 3); ctx.lineTo(px, py + rad + 7); ctx.stroke();
+      ctx.fillStyle = cc; ctx.beginPath(); ctx.arc(px, py, 1.8, 0, 6.283); ctx.fill();
+      drawRunner(locked);
+      for (let i = rings.length - 1; i >= 0; i--) { const r = rings[i]; r.r += 3; r.a -= 0.045; if (r.a <= 0) { rings.splice(i, 1); continue; } ctx.strokeStyle = 'rgba(126,224,168,' + r.a + ')'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, 6.283); ctx.stroke(); }
+      for (let i = parts.length - 1; i >= 0; i--) { const p = parts[i]; p.x += p.vx; p.y += p.vy; p.vx *= 0.94; p.vy *= 0.94; p.a -= 0.03; if (p.a <= 0) { parts.splice(i, 1); continue; } ctx.fillStyle = 'rgba(210,235,255,' + p.a + ')'; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill(); }
+      pulse *= 0.9;
+      if (frame % 40 === 0) tgt = 1060 + Math.round(Math.random() * 44);
+      fps += (tgt - fps) * 0.06;
+      if (this.heroFpsRef.current) this.heroFpsRef.current.textContent = Math.round(fps);
+      this._heroRaf = requestAnimationFrame(draw);
+    };
+    resize(); this._heroResize = resize; window.addEventListener('resize', resize); draw();
+  }
+
+  _initExit() {
+    let seen = false; try { seen = sessionStorage.getItem('zk_exit_seen') === '1'; } catch (e) {}
+    if (seen) return;
+    const armAt = Date.now() + 4000; // don't fire in the first few seconds after load
+    this._exitH = (e) => {
+      if (seen || this.state.modalOpen) return;
+      if (Date.now() < armAt) return;
+      // Only fire on a genuine window-leave through the TOP edge (toward the tab/close button).
+      // e.relatedTarget/toElement is null only when the pointer actually left the document.
+      const left = e.relatedTarget || e.toElement;
+      if (left) return;
+      if (e.clientY > 4) return;
+      seen = true;
+      try { sessionStorage.setItem('zk_exit_seen', '1'); } catch (err) {}
+      this.setState({ exitOpen: true });
+    };
+    document.addEventListener('mouseout', this._exitH);
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._heroRaf) cancelAnimationFrame(this._heroRaf);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._onResizeTweets) window.removeEventListener('resize', this._onResizeTweets);
+    if (this._heroResize) window.removeEventListener('resize', this._heroResize);
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._bgScroll) window.removeEventListener('scroll', this._bgScroll, { capture: true });
+    if (this._ytPoll) clearInterval(this._ytPoll);
+    if (this._ytLoop) clearInterval(this._ytLoop);
+    (this._ytPlayers || []).forEach((p) => { try { p && p.destroy && p.destroy(); } catch (e) {} });
+    if (this._exitH) document.removeEventListener('mouseout', this._exitH);
+    if (this._twPoll) clearInterval(this._twPoll);
+    if (this._heroTimer) clearInterval(this._heroTimer);
+    if (this._revRaf) cancelAnimationFrame(this._revRaf);
+  }
+
+  _targets(i) {
+    const g = this.games[i];
+    return { f0: g.fpsStock, f1: g.fpsTuned, l0: g.latStock, l1: g.latTuned };
+  }
+
+  componentDidUpdate(_p, prev) {
+    if (this.state.modalOpen && this.state.step === 2 && !this._mounted) {
+      this._initStripe();
+    }
+    requestAnimationFrame(() => this._layoutTweets());
+  }
+
+  selectGame = (i) => {
+    if (i === this.state.activeGame) return;
+    this.setState({ activeGame: i, disp: this._targets(i) });
+  };
+
+  heroGo = (i) => { this.setState({ heroSlide: i }); this._resetHeroTimer(); };
+  heroNext = () => { this.setState((st) => ({ heroSlide: (st.heroSlide + 1) % 3 })); this._resetHeroTimer(); };
+  heroPrev = () => { this.setState((st) => ({ heroSlide: (st.heroSlide + 2) % 3 })); this._resetHeroTimer(); };
+  _resetHeroTimer = () => { if (this._heroTimer) clearInterval(this._heroTimer); this._heroTimer = setInterval(() => { this.setState((st) => ({ heroSlide: (st.heroSlide + 1) % 3 })); }, 5200); };
+
+  openOpt = () => this._open(false);
+  openDual = () => this._open(true);
+  goPricing = () => { try { location.hash = '#pricing'; } catch (e) {} };
+  closeLightbox = () => this.setState({ lightbox: null });
+  openLightbox = (src) => () => this.setState({ lightbox: src });
+
+  _initRevLoop() {
+    const el = this.revTrackRef.current; if (!el || this._revInit) return; this._revInit = true;
+    let offset = 0, dragging = false, lastX = 0, moved = 0, hover = false, resumeAt = 0;
+    const wrap = () => { const half = el.scrollWidth / 2; if (half > 0) offset = ((offset % half) + half) % half; };
+    el.style.willChange = 'transform';
+    el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hover = true; });
+    el.addEventListener('pointerleave', () => { hover = false; });
+    el.addEventListener('pointerdown', (e) => { dragging = true; moved = 0; lastX = e.clientX; try { el.setPointerCapture(e.pointerId); } catch (err) {} el.style.cursor = 'grabbing'; });
+    el.addEventListener('pointermove', (e) => { if (!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx); offset -= dx; wrap(); });
+    const end = () => { if (!dragging) return; dragging = false; el.style.cursor = 'grab'; if (moved > 8) this._revSuppress = true; resumeAt = performance.now() + 1600; };
+    el.addEventListener('pointerup', end);
+    el.addEventListener('pointercancel', end);
+    el.addEventListener('click', (e) => { if (this._revSuppress) { e.preventDefault(); e.stopPropagation(); this._revSuppress = false; } }, true);
+    const step = (t) => {
+      if (!dragging && !hover && t > resumeAt) { offset += 0.55; wrap(); }
+      el.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
+      this._revRaf = requestAnimationFrame(step);
+    };
+    this._revRaf = requestAnimationFrame(step);
+  }
+
+  _initTweets() {
+    const el = this.tweetRef.current; if (!el || this._twDone) return;
+    this._twDone = true;
+    const ids = ['2068080255815032945', '2061567361367351762', '2059720881048301733'];
+    el.innerHTML = ids.map((id) => '<blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-conversation="none" data-align="center" data-width="550"><a href="https://twitter.com/zenkytweaks/status/' + id + '"></a></blockquote>').join('');
+    const load = () => { try { window.twttr.widgets.load(el); } catch (e) {} };
+    if (window.twttr && window.twttr.widgets) { load(); return; }
+    let n = 0; this._twPoll = setInterval(() => { n++; if (window.twttr && window.twttr.widgets) { clearInterval(this._twPoll); load(); } else if (n > 100) { clearInterval(this._twPoll); } }, 200);
+  }
+  _open(dual, discount) {
+    this.setState((s) => ({ modalOpen: true, step: 1, dualBoot: dual, discount: discount !== undefined ? !!discount : s.discount, formMsg: '', payMsg: '', payState: 'idle' }));
+  }
+  closeModal = () => {
+    this._teardownStripe();
+    this.setState({ modalOpen: false });
+  };
+  stop = (e) => { e.stopPropagation(); };
+
+  setName = (e) => this.setState({ name: e.target.value, formMsg: '' });
+  setEmail = (e) => this.setState({ email: e.target.value, formMsg: '' });
+
+  toggleDualBoot = () => {
+    this.setState((s) => ({ dualBoot: !s.dualBoot }), () => {
+      if (this.elements) { try { this.elements.update({ amount: this._amount() }); } catch (e) {} }
+    });
+  };
+
+  _amount() { const base = 5000 + (this.state.dualBoot ? 800 : 0); return Math.round(base * (this.state.discount ? 0.95 : 1)); }
+  _valid() {
+    return this.state.name.trim().length > 1 && /\S+@\S+\.\S+/.test(this.state.email);
+  }
+
+  goPayment = () => {
+    if (!this._valid()) {
+      this.setState({ formMsg: 'Please enter your name and a valid email.' });
+      return;
+    }
+    this.setState({ step: 2, payMsg: '' });
+  };
+  backToDetails = () => {
+    this._teardownStripe();
+    this.setState({ step: 1 });
+  };
+
+  async _initStripe() {
+    this._mounted = true;
+    if (!window.Stripe && !document.querySelector('script[src^="https://js.stripe.com"]')) {
+      const sc = document.createElement('script'); sc.src = 'https://js.stripe.com/v3/'; sc.async = true; document.head.appendChild(sc);
+    }
+    let tries = 0;
+    while (!window.Stripe && tries < 80) { await new Promise((r) => setTimeout(r, 100)); tries++; }
+    if (!window.Stripe) { this.setState({ payState: 'unavailable' }); return; }
+    try {
+      this.stripe = window.Stripe('pk_live_51Ovm5lP7WoLxJaG6OuFqlu8KQ3rKFlCcnr5NNqMnY4BGS9Wi9xfHWRp45NvmvjCxtieWRV2FEg5OIAag7lVes8bx00xeLjYOpg');
+      this.elements = this.stripe.elements({
+        mode: 'payment', amount: this._amount(), currency: 'eur',
+        appearance: {
+          theme: 'night',
+          variables: { colorPrimary: '#ffffff', colorBackground: '#000000', colorText: '#ffffff', colorTextSecondary: '#8a8a8a', colorTextPlaceholder: '#5a5a5a', colorDanger: '#e08a8a', fontFamily: 'Inter, sans-serif', fontSizeBase: '15px', borderRadius: '6px', spacingUnit: '4px' },
+          rules: {
+            '.Input': { border: '1px solid #2a2a2a', backgroundColor: '#000000', boxShadow: 'none' },
+            '.Input:focus': { border: '1px solid #ffffff', boxShadow: 'none' },
+            '.Label': { color: '#8a8a8a', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '11px', fontWeight: '500' },
+            '.Tab': { border: '1px solid #2a2a2a', backgroundColor: '#0a0a0a' },
+            '.Tab:hover': { border: '1px solid #444' },
+            '.Tab--selected': { border: '1px solid #ffffff', backgroundColor: '#111' },
+            '.TabLabel': { color: '#cfcfcf' }
+          }
+        }
+      });
+      this.paymentElement = this.elements.create('payment', { layout: 'tabs' });
+      if (this.payRef.current) this.paymentElement.mount(this.payRef.current);
+      this.setState({ payState: 'ready' });
+    } catch (e) {
+      this.setState({ payState: 'unavailable' });
+    }
+  }
+
+  _teardownStripe() {
+    try { if (this.paymentElement) this.paymentElement.destroy(); } catch (e) {}
+    this.paymentElement = null;
+    this.elements = null;
+    this._mounted = false;
+  }
+
+  pay = async () => {
+    if (this.state.payState === 'unavailable' || !this.elements) {
+      this.setState({ payMsg: 'Card form unavailable. Check your connection and reload.' });
+      return;
+    }
+    this.setState({ payState: 'processing', payMsg: '' });
+    try {
+      const { error } = await this.elements.submit();
+      if (error) {
+        this.setState({ payState: 'ready', payMsg: error.message || 'Please check your card details.' });
+      } else {
+        this._teardownStripe();
+        this.setState({ payState: 'idle', step: 3 });
+      }
+    } catch (e) {
+      this.setState({ payState: 'ready', payMsg: 'Something went wrong. Please try again.' });
+    }
+  };
+
+  _icon(name) {
+    const c = { fill: 'none', stroke: '#fff', strokeWidth: 1.7, width: 22, height: 22, viewBox: '0 0 24 24' };
+    const p = (d, extra) => React.createElement('svg', { width: c.width, height: c.height, viewBox: c.viewBox, fill: 'none', stroke: c.stroke, strokeWidth: c.strokeWidth, strokeLinecap: 'round', strokeLinejoin: 'round' }, ...(Array.isArray(d) ? d : [React.createElement('path', { d, key: 'p' })]).concat(extra || []));
+    const E = React.createElement;
+    switch (name) {
+      case 'cart': return p([E('circle', { cx: 9, cy: 20, r: 1.4, key: 1 }), E('circle', { cx: 18, cy: 20, r: 1.4, key: 2 }), E('path', { d: 'M2 3h2.5l2.2 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H6', key: 3 })]);
+      case 'calendar': return p([E('rect', { x: 3, y: 4.5, width: 18, height: 16, rx: 2, key: 1 }), E('path', { d: 'M3 9h18M8 2.5v4M16 2.5v4', key: 2 })]);
+      case 'gauge': return p([E('path', { d: 'M12 13.5 16 9', key: 1 }), E('path', { d: 'M4 17a9 9 0 1 1 16 0', key: 2 }), E('circle', { cx: 12, cy: 13.5, r: 1.3, key: 3 })]);
+      case 'cpu': return p([E('rect', { x: 6.5, y: 6.5, width: 11, height: 11, rx: 1.5, key: 1 }), E('path', { d: 'M9.5 6.5V3.5M14.5 6.5V3.5M9.5 17.5v3M14.5 17.5v3M6.5 9.5h-3M6.5 14.5h-3M17.5 9.5h3M17.5 14.5h3', key: 2 })]);
+      case 'target': return p([E('circle', { cx: 12, cy: 12, r: 8.5, key: 1 }), E('circle', { cx: 12, cy: 12, r: 4.5, key: 2 }), E('circle', { cx: 12, cy: 12, r: 1, key: 3 })]);
+      case 'pulse': return p('M2 12h4l3 8 4-16 3 8h6');
+      case 'chip2': return p([E('rect', { x: 4, y: 4, width: 16, height: 16, rx: 2, key: 1 }), E('path', { d: 'M9 9h6v6H9z', key: 2 })]);
+      case 'memory': return p([E('rect', { x: 2.5, y: 7, width: 19, height: 10, rx: 1.5, key: 1 }), E('path', { d: 'M6 17v2M10 17v2M14 17v2M18 17v2M6.5 10.5h3v3h-3zM14.5 10.5h3v3h-3z', key: 2 })]);
+      case 'bolt': return p('M13 2 4.5 13H11l-1 9 8.5-11H12z');
+      case 'layers': return p([E('path', { d: 'M12 2.5 21.5 8 12 13.5 2.5 8z', key: 1 }), E('path', { d: 'M2.5 13 12 18.5 21.5 13', key: 2 })]);
+      default: return p('M5 12h14');
+    }
+  }
+
+  _gameLogo(name, size) {
+    const E = React.createElement;
+    const sz = size || 14;
+    const wrap = (color, kids) => E('svg', { width: sz, height: sz, viewBox: '0 0 24 24', fill: color, style: { flex: '0 0 auto' } }, ...kids);
+    const key = String(name || '').toLowerCase();
+    if (key.indexOf('valorant') > -1) return wrap('#ff4655', [E('path', { d: 'M2 3.4v7.2L14.3 21h4.5L2 3.4z', key: 1 }), E('path', { d: 'M22 4.6v6.4L15.4 19h-4.1L22 4.6z', key: 2 })]);
+    if (key.indexOf('fortnite') > -1) return wrap('#7c5cff', [E('path', { d: 'M6 2h12v3.4h-6.3v3.1H16v3.4h-4.3V22H8V2z', key: 1 })]);
+    if (key === 'cs2' || key.indexOf('counter') > -1) return wrap('#f5a623', [E('circle', { cx: 12, cy: 12, r: 9, fill: 'none', stroke: '#f5a623', strokeWidth: 2, key: 1 }), E('path', { d: 'M12 2v5M12 17v5M2 12h5M17 12h5', stroke: '#f5a623', strokeWidth: 2, key: 2 }), E('circle', { cx: 12, cy: 12, r: 1.6, key: 3 })]);
+    if (key.indexOf('apex') > -1) return wrap('#d63838', [E('path', { d: 'M12 2 3 20h4l5-11 5 11h4L12 2z', key: 1 })]);
+    if (key.indexOf('warzone') > -1 || key.indexOf('duty') > -1 || key.indexOf('black ops') > -1 || key.indexOf('bo7') > -1) return wrap('#8aa02a', [E('path', { d: 'M4 11h16v2H4zM11 4h2v16h-2z', key: 1 })]);
+    if (key.indexOf('fivem') > -1) return wrap('#f5c518', [E('path', { d: 'M5 4h13v3h-9v3h7v3h-7v6H5V4z', key: 1 })]);
+    if (key.indexOf('overwatch') > -1) return wrap('#f99e1a', [E('path', { d: 'M12 3a6 6 0 0 1 6 6v4a4 4 0 0 1-4 4l-2 4-2-4a4 4 0 0 1-4-4V9a6 6 0 0 1 6-6z', key: 1 })]);
+    if (key.indexOf('siege') > -1 || key.indexOf('rainbow') > -1) return wrap('#e8e8e8', [E('circle', { cx: 12, cy: 12, r: 9, fill: 'none', stroke: '#e8e8e8', strokeWidth: 2, key: 1 }), E('path', { d: 'M12 3v18M3 12h18', stroke: '#e8e8e8', strokeWidth: 1.4, key: 2 })]);
+    if (key.indexOf('league') > -1) return wrap('#c8aa6e', [E('path', { d: 'M6 3h5v3H9v12h6v-4h3v7H6V3z', key: 1 })]);
+    if (key.indexOf('rocket') > -1) return wrap('#1a9df0', [E('circle', { cx: 12, cy: 12, r: 8.5, fill: 'none', stroke: '#1a9df0', strokeWidth: 2, key: 1 }), E('path', { d: 'M12 6l4 6-4 6-4-6z', key: 2 })]);
+    if (key.indexOf('minecraft') > -1) return wrap('#6ab04c', [E('path', { d: 'M4 4h16v16H4z', fill: 'none', stroke: '#6ab04c', strokeWidth: 2, key: 1 }), E('path', { d: 'M8 8h3v3H8zM13 13h3v3h-3z', key: 2 })]);
+    if (key.indexOf('roblox') > -1) return wrap('#e2231a', [E('path', { d: 'M6 3.5 20.5 7 17 21.5 2.5 18 6 3.5zM10 10l4 1-1 4-4-1 1-4z', fillRule: 'evenodd', key: 1 })]);
+    if (key.indexOf('pubg') > -1) return wrap('#f2a900', [E('path', { d: 'M3 10h18v4H3zM6 6h12v2H6zM6 16h12v2H6z', key: 1 })]);
+    if (key.indexOf('gta') > -1) return wrap('#f5c518', [E('path', { d: 'M4 6h6a3 3 0 0 1 0 6H7v6H4V6zm3 3v0h3v0H7z', key: 1 }), E('path', { d: 'M13 6h7v3h-4v3h3v3h-3v3h-3V6z', key: 2 })]);
+    if (key.indexOf('cyberpunk') > -1) return wrap('#f3e600', [E('path', { d: 'M8 4h5a4 4 0 0 1 0 8H11v8H8V4zm3 3v2h2V7h-2z', key: 1 })]);
+    if (key.indexOf('marvel') > -1 || key.indexOf('rivals') > -1) return wrap('#ed1d24', [E('path', { d: 'M4 4l4 8 4-8 4 8 4-8v16h-3v-7l-3 6-2-4-2 4-3-6v7H4V4z', key: 1 })]);
+    return wrap('#8fb4ff', [E('circle', { cx: 12, cy: 12, r: 4, key: 1 })]);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const dual = s.dualBoot;
+    const sim = s.sim;
+    const rg = s.rig;
+    const cpus=[{n:'Ryzen 5 3600',short:'R5 3600',s:40,mem:'ddr4'},{n:'Ryzen 7 3700X',short:'3700X',s:48,mem:'ddr4'},{n:'Ryzen 5 5500',short:'R5 5500',s:48,mem:'ddr4'},{n:'Ryzen 5 5600',short:'R5 5600',s:58,mem:'ddr4'},{n:'Ryzen 5 5600X',short:'5600X',s:62,mem:'ddr4'},{n:'Ryzen 5 5500X3D',short:'5500X3D',s:78,mem:'ddr4'},{n:'Ryzen 7 5700X3D',short:'5700X3D',s:84,mem:'ddr4'},{n:'Ryzen 7 5800X3D',short:'5800X3D',s:88,mem:'ddr4'},{n:'Ryzen 5 7600',short:'R5 7600',s:74,mem:'ddr5'},{n:'Ryzen 5 7600X',short:'7600X',s:82,mem:'ddr5'},{n:'Ryzen 5 7600X3D',short:'7600X3D',s:96,mem:'ddr5'},{n:'Ryzen 7 7700X',short:'7700X',s:94,mem:'ddr5'},{n:'Ryzen 7 7800X3D',short:'7800X3D',s:108,mem:'ddr5'},{n:'Ryzen 9 7900X',short:'7900X',s:110,mem:'ddr5'},{n:'Ryzen 9 7950X3D',short:'7950X3D',s:118,mem:'ddr5'},{n:'Ryzen 7 9700X',short:'9700X',s:106,mem:'ddr5'},{n:'Ryzen 7 9800X3D',short:'9800X3D',s:122,mem:'ddr5'},{n:'Ryzen 7 9850X3D',short:'9850X3D',s:126,mem:'ddr5'},{n:'Ryzen 9 9900X',short:'9900X',s:114,mem:'ddr5'},{n:'Ryzen 9 9950X',short:'9950X',s:120,mem:'ddr5'},{n:'Ryzen 9 9950X3D',short:'9950X3D',s:130,mem:'ddr5'},{n:'Intel i3-10100F',short:'10100F',s:30,mem:'ddr4'},{n:'Intel i5-9600K',short:'9600K',s:42,mem:'ddr4'},{n:'Intel i5-10400F',short:'10400F',s:46,mem:'ddr4'},{n:'Intel i5-11400F',short:'11400F',s:52,mem:'ddr4'},{n:'Intel i7-9700K',short:'9700K',s:54,mem:'ddr4'},{n:'Intel i7-10700K',short:'10700K',s:66,mem:'ddr4'},{n:'Intel i7-11700K',short:'11700K',s:76,mem:'ddr4'},{n:'Intel i9-9900K',short:'9900K',s:62,mem:'ddr4'},{n:'Intel i9-10900K',short:'10900K',s:74,mem:'ddr4'},{n:'Intel i9-11900K',short:'11900K',s:82,mem:'ddr4'},{n:'Intel i3-12100F',short:'12100F',s:46,mem:'both'},{n:'Intel i5-12400F',short:'12400F',s:60,mem:'both'},{n:'Intel i5-12600K',short:'12600K',s:72,mem:'both'},{n:'Intel i5-13400F',short:'13400F',s:74,mem:'both'},{n:'Intel i5-13600K',short:'13600K',s:88,mem:'both'},{n:'Intel i5-14600K',short:'14600K',s:94,mem:'both'},{n:'Intel i7-12700K',short:'12700K',s:92,mem:'both'},{n:'Intel i7-13700K',short:'13700K',s:102,mem:'both'},{n:'Intel i7-14700K',short:'14700K',s:108,mem:'both'},{n:'Intel i9-12900K',short:'12900K',s:104,mem:'both'},{n:'Intel i9-13900K',short:'13900K',s:116,mem:'both'},{n:'Intel i9-14900K',short:'14900K',s:122,mem:'both'},{n:'Intel Ultra 5 245K',short:'U5 245K',s:94,mem:'ddr5'},{n:'Intel Ultra 7 265K',short:'U7 265K',s:112,mem:'ddr5'},{n:'Intel Ultra 9 285K',short:'U9 285K',s:120,mem:'ddr5'}];
+    const gpus=[{n:'GTX 1050',short:'1050',s:12},{n:'GTX 1050 Ti',short:'1050 Ti',s:15},{n:'GTX 1650',short:'1650',s:22},{n:'GTX 1060 6GB',short:'1060',s:24},{n:'GTX 1070',short:'1070',s:30},{n:'GTX 1080 Ti',short:'1080 Ti',s:44},{n:'GTX 1660 Super',short:'1660 S',s:30},{n:'RTX 2060',short:'2060',s:34},{n:'RTX 2070 Super',short:'2070 S',s:44},{n:'RTX 3050',short:'3050',s:32},{n:'RTX 3060',short:'3060',s:45},{n:'RTX 3060 Ti',short:'3060 Ti',s:54},{n:'RTX 3070',short:'3070',s:60},{n:'RTX 3080',short:'3080',s:74},{n:'RTX 3090',short:'3090',s:84},{n:'RTX 4060',short:'4060',s:52},{n:'RTX 4060 Ti',short:'4060 Ti',s:62},{n:'RTX 4070',short:'4070',s:72},{n:'RTX 4070 Super',short:'4070 S',s:82},{n:'RTX 4070 Ti Super',short:'4070TiS',s:92},{n:'RTX 4080 Super',short:'4080 S',s:104},{n:'RTX 4090',short:'4090',s:130},{n:'RTX 5060',short:'5060',s:60},{n:'RTX 5070',short:'5070',s:86},{n:'RTX 5070 Ti',short:'5070 Ti',s:104},{n:'RTX 5080',short:'5080',s:138},{n:'RTX 5090',short:'5090',s:170},{n:'RX 580',short:'RX 580',s:26},{n:'RX 5700 XT',short:'5700 XT',s:48},{n:'RX 6600',short:'6600',s:44},{n:'RX 6600 XT',short:'6600 XT',s:52},{n:'RX 6700 XT',short:'6700 XT',s:60},{n:'RX 6800 XT',short:'6800 XT',s:78},{n:'RX 7600',short:'7600',s:50},{n:'RX 7700 XT',short:'7700 XT',s:70},{n:'RX 7800 XT',short:'7800 XT',s:88},{n:'RX 7900 XTX',short:'7900 XTX',s:120},{n:'RX 9070 XT',short:'9070 XT',s:112}];
+    const rams=[{n:'8GB DDR4-2666 CL16',short:'D4-2666',s:30,type:'ddr4'},{n:'16GB DDR4-3200 CL16',short:'3200 C16',s:44,type:'ddr4'},{n:'16GB DDR4-3600 CL18',short:'3600 C18',s:52,type:'ddr4'},{n:'16GB DDR4-3600 CL16',short:'3600 C16',s:56,type:'ddr4'},{n:'32GB DDR4-3600 CL14',short:'3600 C14',s:60,type:'ddr4'},{n:'32GB DDR4-4000 CL16',short:'4000 C16',s:62,type:'ddr4'},{n:'16GB DDR5-4800 CL40',short:'4800 C40',s:58,type:'ddr5'},{n:'32GB DDR5-5600 CL46',short:'5600 C46',s:66,type:'ddr5'},{n:'32GB DDR5-5600 CL36',short:'5600 C36',s:72,type:'ddr5'},{n:'32GB DDR5-6000 CL36',short:'6000 C36',s:80,type:'ddr5'},{n:'32GB DDR5-6000 CL30',short:'6000 C30',s:88,type:'ddr5'},{n:'32GB DDR5-6000 CL28',short:'6000 C28',s:94,type:'ddr5'},{n:'32GB DDR5-6000 CL26',short:'6000 C26',s:98,type:'ddr5'},{n:'32GB DDR5-6400 CL32',short:'6400 C32',s:96,type:'ddr5'},{n:'32GB DDR5-7200 CL34',short:'7200 C34',s:102,type:'ddr5'},{n:'32GB DDR5-8000 CL38',short:'8000 C38',s:106,type:'ddr5'}];
+    // cpuRef = fps a score-100 CPU sustains (the CPU frame ceiling at 1080p) · gpuRef = fps a score-100 GPU pushes at 1080p
+    const rgames=[
+      {n:'Fortnite',cpuRef:355,gpuRef:780,gain:1.30,where:'Performance mode · competitive drop, mid-fight'},
+      {n:'Valorant',cpuRef:640,gpuRef:1450,gain:1.34,where:'Ascent · 5v5, mid-round'},
+      {n:'Counter-Strike 2',cpuRef:470,gpuRef:900,gain:1.32,where:'Dust II · deathmatch, full server'},
+      {n:'Apex Legends',cpuRef:255,gpuRef:390,gain:1.28,where:"World's Edge · 20-player fight"},
+      {n:'Warzone',cpuRef:180,gpuRef:255,gain:1.27,where:'Verdansk · early rotation'},
+      {n:'Black Ops 7',cpuRef:200,gpuRef:280,gain:1.27,where:'Built-in benchmark · avg FPS'},
+      {n:'Overwatch 2',cpuRef:405,gpuRef:620,gain:1.30,where:'5v5 · mid teamfight'},
+      {n:'FiveM (GTA RP)',cpuRef:210,gpuRef:470,gain:1.31,where:'Busy RP server · downtown, ~200 pop'}
+    ];
+    // resolution shifts load onto the GPU; CPU frame ceiling barely moves
+    const ress=[{n:'1080p',gpuMul:1.0,cpuMul:1.0},{n:'1440p',gpuMul:0.70,cpuMul:0.99},{n:'4K',gpuMul:0.42,cpuMul:0.97}];
+    const mkOpts=(arr)=>arr.map((x,i)=>({v:String(i),label:x.n}));
+    const C=cpus[rg.cpu]||cpus[16], G=gpus[rg.gpu]||gpus[31], GA=rgames[rg.game]||rgames[0], RS=ress[rg.res]||ress[0];
+    // ---- memory gating: the CPU dictates which DDR generation is selectable ----
+    const ramAllowed=rams.map((r,i)=>({r,i})).filter((o)=>C.mem==='both'?true:o.r.type===C.mem);
+    const allowedIdx=ramAllowed.map((o)=>o.i);
+    let ramIdx=rg.ram; if(allowedIdx.indexOf(ramIdx)===-1) ramIdx=allowedIdx[0];
+    const MM=rams[ramIdx]||rams[allowedIdx[0]];
+    // ---- bottleneck FPS model: whichever of CPU/GPU is weaker sets the ceiling ----
+    const ramMul=0.94+Math.max(0,(MM.s-36))/(110-36)*0.16;               // 0.94 .. ~1.10, memory scaling
+    const cpuFps=GA.cpuRef*(C.s/100)*ramMul*RS.cpuMul;                    // at 1080p esports titles ride this ceiling
+    const gpuFps=GA.gpuRef*(G.s/100)*RS.gpuMul;
+    const minv=Math.min(cpuFps,gpuFps), maxv=Math.max(cpuFps,gpuFps);
+    const rigStock=Math.max(30,Math.round(minv*(1+0.08*(1-minv/maxv))));  // small headroom from the stronger part
+    const rigTuned=Math.round(rigStock*GA.gain);
+    const rigDelta='+'+Math.round((GA.gain-1)*100)+'%';
+    const rigLow=Math.round(rigTuned*0.85);
+    const perf=C.s*0.5+G.s*0.35+MM.s*0.15;
+    const perfN=Math.min(1,perf/150);
+    const rigLat=Math.max(2.4,(1000/rigTuned)*2.2+1.4).toFixed(1);
+    const rigStab=Math.min(99,Math.round(70+perf/6));
+    const cpuColor = /intel/i.test(C.n) ? '#5aa9ff' : '#ff5252';          // Intel blue · AMD red
+    const gpuColor = /(^|\s)rx\s|radeon/i.test(G.n) ? '#ff5252' : /arc|intel/i.test(G.n) ? '#5aa9ff' : '#95e106';   // AMD red · Intel blue · NVIDIA green
+    const ramColor = /ddr5/i.test(MM.n) ? '#b58bff' : '#7ea3ff';          // DDR5 violet · DDR4 blue
+
+    const simCnt = (sim.bios?1:0)+(sim.windows?1:0)+(sim.oc?1:0)+(sim.ram?1:0);
+    let _f=540,_l=12.4,_t=41,_r=820,_st=58;
+    if(sim.bios){_f+=150;_l-=2.1;_t+=1;_r+=160;_st+=11;}
+    if(sim.windows){_f+=110;_l-=2.8;_t-=1;_r+=120;_st+=15;}
+    if(sim.oc){_f+=210;_l-=1.4;_t+=11;_r+=720;_st-=7;}
+    if(sim.ram){_f+=95;_l-=1.9;_t+=1;_r+=180;_st+=12;}
+    _l=Math.max(4.1,_l);_st=Math.max(0,Math.min(100,_st));
+    const simDefs=[
+      {key:'bios',title:'BIOS deep config',sub:'SCEWIN \u00b7 power \u00b7 boost',icon:'cpu'},
+      {key:'windows',title:'Windows tweaks',sub:'services \u00b7 scheduler \u00b7 60 procs',icon:'chip2'},
+      {key:'oc',title:'CPU / GPU overclock',sub:'curve \u00b7 clocks \u00b7 voltage',icon:'bolt'},
+      {key:'ram',title:'RAM timings',sub:'manual subtimings',icon:'memory'}
+    ];
+    const simRows=simDefs.map((d)=>{const on=sim[d.key];return{title:d.title,sub:d.sub,iconEl:this._icon(d.icon),toggle:()=>this.toggleSim(d.key),track:on?'#fff':'#1a1a1a',trackBorder:on?'#fff':'#2a2a2a',knobBg:on?'#000':'#666',knobX:on?'21px':'0px'};});
+    const faqDefs=[
+      {q:'Is this a script or real tuning?',a:'Neither a script nor a magic .bat. A real optimizer remotes in live and tunes BIOS, Windows, CPU, RAM and GPU by hand, around your exact hardware.'},
+      {q:'Will overclocking fry my PC?',a:'No. Everything is checked against your thermals and silicon first, then stress tested for stability before we leave the call. Nothing aggressive goes in unvalidated.'},
+      {q:'How long does it take?',a:'Around 3 hours for the full pass, give or take depending on your hardware and connection. Dual Boot adds a little on top.'},
+      {q:'Do I lose my files?',a:'The full pass includes a fresh Windows install, so back up anything important first. Want to keep your current setup? Add Dual Boot for a separate, optimized environment.'},
+      {q:'Does it only help high end rigs?',a:'Not at all. Budget and mid range builds usually see the biggest jump, because they have the most headroom left on the table. Flagship rigs still gain cleaner frame pacing, lower input delay and better 1% lows.'},
+      {q:'DDR4 or an older CPU? Still worth it?',a:'Yes. Plenty of our sessions are on AM4 DDR4 boards and 9th to 12th gen Intel. The tuning is built around whatever you run. The FPS estimator lets you pick your exact parts, and only offers the memory your CPU actually supports.'},
+      {q:'What if I feel no difference?',a:'You watch every change live and we benchmark before and after, so the gain is on screen, not on faith. If a tweak does not help your rig, it does not make the cut.'}
+    ];
+    const faqs=faqDefs.map((d,i)=>{const open=s.faqOpen===i;return{q:d.q,a:d.a,num:String(i+1).padStart(2,'0'),toggle:()=>this.toggleFaq(i),rot:open?'45deg':'0deg',maxh:open?'220px':'0px',op:open?'1':'0'};});
+    const disc = s.discount ? 0.05 : 0;
+    const totalE = 50 + (dual ? 8 : 0);
+    const totalU = 58 + (dual ? 9 : 0);
+    const dispE = disc ? (totalE*0.95).toFixed(2) : String(totalE);
+    const dispU = disc ? (totalU*0.95).toFixed(2) : String(totalU);
+    const valid = this._valid();
+
+    // chart
+    const gd = this.games[s.activeGame];
+    const d = s.disp;
+    const fpsMax = gd.fpsTuned;
+    const latMax = gd.latStock;
+    const g = {
+      name: gd.key, sub: gd.sub,
+      fps0: Math.round(d.f0), fps1: Math.round(d.f1),
+      lat0: d.l0.toFixed(1), lat1: d.l1.toFixed(1),
+      fps0w: (d.f0 / fpsMax * 100).toFixed(1) + '%',
+      fps1w: (d.f1 / fpsMax * 100).toFixed(1) + '%',
+      lat0w: (d.l0 / latMax * 100).toFixed(1) + '%',
+      lat1w: (d.l1 / latMax * 100).toFixed(1) + '%',
+      fpsDelta: '+' + Math.round((gd.fpsTuned - gd.fpsStock) / gd.fpsStock * 100) + '%',
+      latDelta: '-' + Math.round((1 - gd.latTuned / gd.latStock) * 100) + '%'
+    };
+
+    const tabs = this.games.map((x, i) => {
+      const on = i === s.activeGame;
+      return { name: x.key, logoEl: this._gameLogo(x.key, 15), onClick: () => this.selectGame(i),
+        bg: on ? '#fff' : 'transparent', color: on ? '#000' : '#9a9a9a',
+        border: on ? x.color : '#2a2a2a', dot: on ? x.color : '#555',
+        glow: on ? ('0 0 0 1px ' + x.color + ', 0 0 26px -4px ' + x.color + 'cc, 0 8px 26px -12px ' + x.color) : 'none' };
+    });
+
+    const heroPoster = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='10'><rect width='16' height='10' fill='%23070c1a'/></svg>";
+    const heroClips = [
+      { game: 'Fortnite', accent: '#7c5cff', fps: 240, stock: 145, spec: 'live tuned capture', vid: 'lm4JylRfC6I' },
+      { game: 'FiveM RP', accent: '#f5a623', fps: 281, stock: 155, spec: 'live tuned capture', vid: 'fW2kWG3wpN8' },
+      { game: 'Valorant', accent: '#ff4655', fps: 842, stock: 410, spec: 'live tuned capture', vid: 'XXYhwkou238' }
+    ];
+    const heroSlides = heroClips.map((c, i) => {
+      const d = (i - s.heroSlide + 3) % 3; const center = d === 0;
+      const x = center ? '0%' : (d === 1 ? '52%' : '-52%');
+      return Object.assign({}, c, {
+        logoEl: this._gameLogo(c.game, 13),
+        posterEl: React.createElement('img', { src: 'https://img.youtube.com/vi/' + c.vid + '/hqdefault.jpg', alt: '', loading: 'lazy', style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', background: '#070c1a' } }),
+        x: x, sc: center ? '1' : '0.78', op: center ? '1' : '0.4', br: center ? '1' : '0.45',
+        z: center ? '3' : '1', cur: center ? 'default' : 'pointer',
+        click: center ? null : (() => this.heroGo(i)),
+        go: () => this.heroGo(i), dotW: center ? '26px' : '7px', dotBg: center ? c.accent : '#26365c'
+      });
+    });
+
+    const ps = s.payState;
+    const payBtnLabel = ps === 'processing' ? 'Processing…' : 'Pay ' + dispE + '€ & continue';
+
+    const stepNames = ['Details', 'Payment', 'Done'];
+    const stepDots = stepNames.map((nm, i) => {
+      const idx = i + 1;
+      const done = s.step > idx;
+      const active = s.step === idx;
+      return { label: done ? '✓' : String(idx), name: nm,
+        bg: (done || active) ? '#fff' : 'transparent',
+        color: (done || active) ? '#000' : '#777',
+        border: (done || active) ? '#fff' : '#2a2a2a',
+        txt: active ? '#fff' : '#777',
+        line: i < 2 };
+    });
+
+    const _revImg = (src, style) => src ? React.createElement('img', { src: src, alt: '', style: Object.assign({ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }, style || {}) }) : null;
+
+    const _revData = ([
+      { initial: 'S', name: 'swify', role: 'FORTNITE', avatar: 'assets/rev-swify-pfp.webp', img: 'assets/rev-swify-game.jpg', ratio: '16/9', react1: '31', react2: '24', msg: 'locked at a clean 240 now, zero drops in build fights. this guy actually knows his stuff 🔒' },
+      { initial: 'R', name: 'ripper', role: 'PRO', avatar: 'assets/rev-ripper-pfp.webp', img: 'assets/rev-ripper-game.png', ratio: '16/10', react1: '58', react2: '41', msg: 'bro you\u2019re literally the #1 pc tuner on the planet 🐐🔥🚀 nobody else even comes close 💯💪⚡ absolute goat, aim feels illegal now 😳🎯 everyone needs to book you rn 🙏✨🥇' },
+      { initial: 'I', name: 'idenstv', role: 'CREATOR', avatar: 'assets/rev-idens-pfp.webp', img: 'assets/rev-idens-game.png', ratio: '16/10', react1: '52', react2: '40', msg: 'had a 13900K and it still felt off. now stable at 5.3GHz and it finally moves like it should 🚀' },
+      { initial: 'P', name: 'pow', role: 'FACEIT CS2', avatar: 'assets/rev-pow-pfp.webp', img: 'assets/rev-pow-game.png', ratio: '16/10', react1: '39', react2: '28', msg: '7800X3D + the ram timings fully dialed in zentimings now 😮\u200d💨 idle sitting at 35°C, 1% lows way up and the stutter is gone. dude actually knows his subtimings +rep' },
+      { initial: '4', name: '44paki', role: 'CREATOR', avatar: 'assets/rev-44paki-pfp.webp', img: 'assets/rev-44paki-game.png', ratio: '16/9', react1: '21', react2: '16', msg: 'not even joking, my mum\u2019s pc runs better after this 😭 aim just clicks now' },
+      { initial: 'D', name: 'deku', role: 'PRO', avatar: 'assets/rev-deku-pfp.webp', img: 'assets/rev-deku-game.png', ratio: '16/9', react1: '18', react2: '14', msg: 'thought my pc was cooked ngl. one session, cpu/gpu/ram all tuned and it runs brand new. worth every cent' }
+    ]).map((r) => Object.assign({}, r, { avatarEl: r.avatar ? _revImg(r.avatar) : React.createElement('span', null, r.initial), imgEl: _revImg(r.img), open: this.openLightbox(r.img) }));
+
+    return {
+      rootRef: this.rootRef,
+      payRef: this.payRef,
+      cmpRef: this.cmpRef,
+      tweetRef: this.tweetRef,
+      revTrackRef: this.revTrackRef,
+      toggleCustom: this.toggleCustom,
+      custRot: s.customOpen ? '45deg' : '0deg',
+      custMaxH: s.customOpen ? (s.custAnalyzed ? '1300px' : '760px') : '0px',
+      custAnalyzed: s.custAnalyzed,
+      custAnalyzedOk: s.custAnalyzed && !s.custBogus,
+      custBogus: s.custBogus,
+      analyzeCust: this.analyzeCust,
+      custSummary: (() => { const c = s.cust; const p = []; if (c.cpu) p.push('CPU ' + c.cpu); if (c.gpu) p.push('GPU ' + c.gpu); if (c.ram) p.push('RAM ' + c.ram); if (c.cooler) p.push('Cooler ' + c.cooler); if (c.mobo) p.push('Board ' + c.mobo); return p.length ? ('Logged ' + p.join(' · ') + '.') : 'No parts typed yet — drop in at least your CPU, GPU and memory for the closest read.'; })(),
+      custFields: [
+        { key: 'cpu', label: 'CPU', ph: 'e.g. Ryzen 7 9800X3D' },
+        { key: 'cooler', label: 'CPU cooler', ph: 'e.g. Arctic Liquid Freezer III 360' },
+        { key: 'mobo', label: 'Motherboard', ph: 'e.g. MSI B650 Tomahawk' },
+        { key: 'ram', label: 'RAM', ph: 'e.g. 32GB DDR5-6000 CL30' },
+        { key: 'gpu', label: 'GPU', ph: 'e.g. RTX 4070 Super' }
+      ].map((f) => ({ label: f.label, ph: f.ph, value: s.cust[f.key], onInput: this.setCust(f.key) })),
+      simStateLabel: '', simStateColor: '#9a9a9a',
+      faqs,
+      bgRef: this.bgRef,
+      rig: { cpu:String(rg.cpu), gpu:String(rg.gpu), ram:String(ramIdx), game:String(rg.game), res:String(rg.res), cpuShort:C.short, gpuShort:G.short, ramShort:MM.short, cpuColor, gpuColor, ramColor },
+      cpuOpts: mkOpts(cpus), gpuOpts: mkOpts(gpus), ramOpts: ramAllowed.map((o)=>({v:String(o.i),label:o.r.n})), gameOpts: mkOpts(rgames), resOpts: mkOpts(ress),
+      onCpu: this.setRig('cpu'), onGpu: this.setRig('gpu'), onRam: this.setRig('ram'), onGame: this.setRig('game'), onRes: this.setRig('res'),
+      rigStock, rigTuned, rigDelta, rigLow, rigLat, rigStab, rigWhere: GA.where,
+      rigStockW: Math.round(rigStock/rigTuned*100)+'%',
+      rigSpin: Math.max(0.6, (2.0 - perfN*1.2)).toFixed(2)+'s', rigGlow: (0.3 + perfN*0.5).toFixed(2),
+      openRig: this.openRig,
+      heroRef: this.heroRef, heroFpsRef: this.heroFpsRef, heroHitsRef: this.heroHitsRef, headerRef: this.headerRef,
+      exitOpen: s.exitOpen, closeExit: this.closeExit, exitGo: this.exitGo, discountActive: s.discount,
+      heroFps: s.heroFps,
+      heroProc: s.heroProc,
+
+      openOpt: this.openOpt,
+      goPricing: this.goPricing,
+
+      tabs, g,
+      heroSlides, heroPoster, heroPrev: this.heroPrev, heroNext: this.heroNext,
+
+      // modal
+      modalOpen: s.modalOpen,
+      closeModal: this.closeModal,
+      stop: this.stop,
+      stepDots,
+      isStep1: s.step === 1, isStep2: s.step === 2, isStep3: s.step === 3,
+      form: { name: s.name, email: s.email },
+      setName: this.setName, setEmail: this.setEmail,
+      toggleDualBoot: this.toggleDualBoot,
+      goPayment: this.goPayment, backToDetails: this.backToDetails,
+      pay: this.pay,
+      dualCheck: dual ? '✓' : '',
+      dualBg: dual ? '#fff' : 'transparent',
+      dualBorder: dual ? '#fff' : '#3a3a3a',
+      totalEur: dispE + '€',
+      totalUsd: '~' + dispU + '$',
+      contBg: valid ? '#fff' : '#1a1a1a',
+      contColor: valid ? '#000' : '#666',
+      contCursor: valid ? 'pointer' : 'not-allowed',
+      contOpacity: valid ? '1' : '0.8',
+      formMsg: s.formMsg,
+      payMsg: s.payMsg,
+      payBtnLabel,
+      processing: ps === 'processing',
+      payUnavailable: ps === 'unavailable',
+      greetName: (s.name.trim().split(' ')[0]) || 'gamer',
+
+      steps: [
+        { num: '01', delay: 0, icon: 'cart', iconEl: this._icon('cart'), title: 'Buy your service', body: 'Pick the optimization, add Dual Boot if you want it, and pay securely by card. Confirmation is instant.', tags: ['Card', 'Instant', 'Secure'] },
+        { num: '02', delay: 90, icon: 'calendar', iconEl: this._icon('calendar'), title: 'Book your slot', body: 'Grab any open time from the live calendar. We confirm in minutes and send your prep checklist.', tags: ['Next slot ~15 min'] },
+        { num: '03', delay: 180, icon: 'gauge', iconEl: this._icon('gauge'), title: 'We optimize live', body: 'Join the call. We remote in and tune CPU, RAM, GPU, BIOS and Windows while you watch every change.', tags: ['BIOS', 'Windows', 'CPU', 'RAM', 'GPU'] }
+      ],
+
+      services: [
+        {
+          delay: 0, featured: true, label: 'For all PCs', iconEl: this._icon('bolt'),
+          name: 'PC Optimization & Overclocking', priceEur: '50€', priceUsd: '~58$', unit: '~3 hr session',
+          desc: 'A full software and firmware pass. A fresh custom Windows install plus BIOS, CPU, GPU and RAM tuning at a level no automated tool can reach, built around your exact hardware.',
+          bullets: ['Fresh custom Windows installation', 'Windows performance tweaks', 'BIOS hidden (SCEWIN) & visual config', 'CPU, GPU & RAM overclock', 'Complete hardware stress testing'],
+          cta: 'Get Optimized', onClick: this.openOpt,
+          border: '#3a3a3a', bg: 'linear-gradient(180deg,#101010,#080808)',
+          btnBg: '#fff', btnColor: '#000', btnBorder: '#fff', btnClass: 'zk-btnw'
+        },
+        {
+          delay: 90, featured: false, label: 'Extra', iconEl: this._icon('layers'),
+          name: 'Dual Boot Setup', priceEur: '8€', priceUsd: '~9$', unit: 'extra',
+          desc: 'Rides along with the main package. Sets up a second Windows partition alongside your optimized install, so you can boot into a completely separate environment any time. Same PC, two setups.',
+          bullets: ['Second Windows partition', 'Completely separate boot environment', 'Switch setups any time', 'Same PC, two configurations'],
+          cta: 'Add Dual Boot', onClick: this.openDual,
+          border: '#1c1c1c', bg: 'linear-gradient(180deg,#0b0b0b,#070707)',
+          btnBg: 'transparent', btnColor: '#fff', btnBorder: '#2c2c2c', btnClass: 'zk-btno'
+        }
+      ],
+
+      audience: [
+        { delay: 0, iconEl: this._icon('target'), title: 'Competitive FPS players', kind: 'Best fit', body: 'For players chasing stable frame pacing, lower input delay, and fewer stutters that lose you fights in Valorant, Fortnite, COD and more.', tags: ['FPS', 'Latency', 'Stability'] },
+        { delay: 90, iconEl: this._icon('pulse'), title: 'Underperforming rigs', kind: 'Audit', body: 'Specs look great on paper, but the PC still feels inconsistent, delayed, or worse than similar builds.', tags: ['1% lows', 'Stutter', 'Diagnose'] },
+        { delay: 0, iconEl: this._icon('cpu'), title: 'BIOS deep tuning', kind: 'Firmware', body: 'Hidden SCEWIN settings, PBO, overclocking and undervolting, boost limits, thermals and manual RAM timings, all reviewed and dialled in before any aggressive change.', tags: ['SCEWIN', 'OC / UV', 'RAM timings'] },
+        { delay: 90, iconEl: this._icon('gauge'), title: 'Windows + OS tuning', kind: 'Software', body: 'Clean Windows configuration, services, scheduling, power plan, DPC latency and background bloat stripped out so the OS stops stealing your frames.', tags: ['Windows', 'Latency', 'Debloat'] }
+      ],
+
+      reviews: _revData,
+      reviewsLoop: _revData.concat(_revData),
+      lightboxOpen: !!s.lightbox,
+      lightboxSrc: s.lightbox || '',
+      closeLightbox: this.closeLightbox,
+
+      footerCols: [
+        { title: 'Services', links: ['PC Optimization', 'Dual Boot Setup', 'Pricing', 'Free PC Check', 'Guides', 'Contact'] },
+        { title: 'Company', links: ['Our Mission', 'Performance Blog', 'Free Windows Playbook', 'Game Mode Utility', 'Discord'] },
+        { title: 'Guides', links: ['BIOS Optimization', 'Reduce Input Lag', 'GPU Optimization', 'RAM Optimization', 'Terms of Service'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
